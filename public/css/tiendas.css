@@ -1,0 +1,33 @@
+.navbar-euderm {
+  background-color: #C8A7C4 !important;
+  color:#fff !important;
+  -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04) !important;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04) !important;
+}
+
+.navbar-roho {
+  background-color: #fff !important;
+  color:#808D16 !important;
+  -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04) !important;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04) !important;
+}
+
+.btn-euderm{
+  background-color: #72d2a2;
+  color: white;
+}
+
+.btn-euderm:hover{
+  background-color: #7cc8a2;
+  color: #fff;
+}
+
+.btn-roho{
+  background-color: #000;
+  color: white;
+}
+
+.btn-roho:hover{
+  background-color: #ccc;
+  color: #fff;
+}

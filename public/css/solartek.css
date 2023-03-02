@@ -1,0 +1,16 @@
+.navbar-solartek {
+  background-color: #04B431 !important;
+  color:#000 !important;
+  -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04) !important;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04) !important;
+}
+
+.btn-solartek{
+  background-color: #04B431;
+  color: white;
+}
+
+.btn-solartek:hover{
+  background-color: #81d998;
+  color: #fff;
+}

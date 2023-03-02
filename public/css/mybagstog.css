@@ -1,0 +1,234 @@
+
+.text-mybagstog {
+  color: #97c93e !important;
+}
+
+.btn-mybagstog {
+  background-color: #39ff14;
+  color: black;
+}
+
+.btn-mybagstog:hover {
+  background-color: #bfff00;
+  color: black;
+}
+
+/* SECTION-CATEGORIA CONTENT
+-------------------------------------------------- */
+
+/* Center align the text within the three columns below the carousel */
+.section-categorias .col-lg-3 .col-6{
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+.section-categorias h2 {
+  font-weight: 400;
+}
+.section-categorias .col-lg-4 p {
+  margin-right: .75rem;
+  margin-left: .75rem;
+}
+
+.section-menudeo-mayoreo{
+  padding-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  background-color: #636b6f;
+  color: white;
+}
+
+.section-menudeo-mayoreo .card{
+  padding: : 10px;
+  text-align: center;
+  background-color: #636b6f;
+  color: white;
+}
+
+.section-impresion{
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  text-align: center;
+  background-color: #bfff00;
+  color: #636b6f;
+}
+
+#header img {
+  width: 80px;
+}
+
+#main .carousel-inner img {
+  max-height: 20vh;
+  object-fit: cover;
+  /*filter: grayscale(70%);*/
+}
+
+#carousel {
+  position: relative;
+}
+
+#carousel .overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  /*background-color: rgba(0, 0, 0, 0.5);*/s
+ /* color: white;*/
+}
+
+#carousel .overlay .container,
+#carousel .overlay .row {
+  height: 50%;
+}
+
+#place-time {
+  background-color: #343a40;
+  color: white;
+}
+
+#place-time img {
+  max-width: 100%;
+}
+
+#footer {
+  background: linear-gradient(90deg,#1c3643,#273b47 25%,#1e5372);
+}
+
+#footer a {
+  color: white;
+}
+
+#marcas{
+  background-color: #000;
+}
+
+#marcas h2{
+  color: #fff;
+}
+
+html, body {
+                background-color: #fff;
+                color: #636b6f;
+                font-family: 'Nunito', sans-serif;
+                font-weight: 200;
+                height: 100vh;
+                margin: 0;
+            }
+
+            .full-height {
+                height: 100vh;
+            }
+
+            .flex-center {
+                align-items: center;
+                display: flex;
+                justify-content: center;
+            }
+
+            .position-ref {
+                position: relative;
+            }
+
+            .top-right {
+                position: absolute;
+                right: 10px;
+                top: 18px;
+            }
+
+            .content {
+                text-align: center;
+            }
+
+            .title {
+                font-size: 84px;
+            }
+
+            .links > a {
+                color: #636b6f;
+                padding: 0 25px;
+                font-size: 13px;
+                font-weight: 600;
+                letter-spacing: .1rem;
+                text-decoration: none;
+                text-transform: uppercase;
+            }
+
+            .m-b-md {
+                margin-bottom: 30px;
+            }
+
+            .container {
+  max-width: 960px;
+}
+
+/*
+ * Custom translucent site header
+ */
+
+.site-header {
+  background-color: rgba(0, 0, 0, .85);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
+}
+.site-header a {
+  color: #999;
+  transition: ease-in-out color .15s;
+}
+.site-header a:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+/*
+ * Dummy devices (replace them with your own or something else entirely!)
+ */
+
+.product-device {
+  position: absolute;
+  right: 10%;
+  bottom: -30%;
+  width: 300px;
+  height: 540px;
+  background-color: #333;
+  border-radius: 21px;
+  -webkit-transform: rotate(30deg);
+  transform: rotate(30deg);
+}
+
+.product-device::before {
+  position: absolute;
+  top: 10%;
+  right: 10px;
+  bottom: 10%;
+  left: 10px;
+  content: "";
+  background-color: rgba(255, 255, 255, .1);
+  border-radius: 5px;
+}
+
+.product-device-2 {
+  top: -25%;
+  right: auto;
+  bottom: 0;
+  left: 5%;
+  background-color: #e5e5e5;
+}
+
+
+/*
+ * Extra utilities
+ */
+
+.flex-equal > * {
+  -ms-flex: 1;
+  flex: 1;
+}
+@media (min-width: 768px) {
+  .flex-md-equal > * {
+    -ms-flex: 1;
+    flex: 1;
+  }
+}
+
+.overflow-hidden { overflow: hidden; }

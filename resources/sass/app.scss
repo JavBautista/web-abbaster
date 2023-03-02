@@ -1,0 +1,125 @@
+
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+//jQuery UI
+@import '~jquery-ui/themes/base/all.css';
+
+//Summernote
+@import '~summernote/dist/summernote-bs4.css';
+
+//$fa-font-path: "../webfonts";
+//@import '~/font-awesome/css/font-awesome.css';
+
+//$fa-font-path: "../webfonts";
+//@import '~@fortawesome/fontawesome-free/scss/fontawesome.scss';
+//@import '~@fortawesome/fontawesome-free/scss/solid.scss';
+//@import '~@fortawesome/fontawesome-free/scss/brands.scss';
+//@import '~@fortawesome/fontawesome-free/scss/regular.scss';
+
+.txt-orange{
+  color:#ffa500;
+}
+
+/*
+.card-img-scale{
+    width: 100%;
+    height: 15vw;
+    object-fit: scale-down;
+}
+*/
+.card-img-scale{
+  height: 30vh;
+  object-fit: scale-down;
+}
+
+.navbar-laravel {
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.testTitulo{
+	color: blue;
+}
+
+.page-active{
+	color:red !important;
+	font-weight: bold;
+}
+
+/*
+  CodePen Home [CSS] Infinite autoplay carousel-fork
+  https://codepen.io/CRAKERSS/pen/zyZdRw
+  */
+      body.bannerloop {
+  align-items: center;
+  background: #E3E3E3;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+}
+
+@-webkit-keyframes s_scroll {
+  0% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+  100% {
+    -webkit-transform: translateX(calc(-250px * 7));
+            transform: translateX(calc(-250px * 7));
+  }
+}
+
+@keyframes s_scroll {
+  0% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+  100% {
+    -webkit-transform: translateX(calc(-250px * 7));
+            transform: translateX(calc(-250px * 7));
+  }
+}
+.slider_bl {
+  background: white;
+  height: 100px;
+  margin: auto;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+.slider_bl::before, .slider_bl::after {
+  background: linear-gradient(to right, white 0%, rgba(255, 255, 255, 0) 100%);
+  content: "";
+  height: 100px;
+  position: absolute;
+  width: 200px;
+  z-index: 2;
+}
+.slider_bl::after {
+  right: 0;
+  top: 0;
+  -webkit-transform: rotateZ(180deg);
+          transform: rotateZ(180deg);
+}
+.slider_bl::before {
+  left: 0;
+  top: 0;
+}
+.slider_bl .slide_bl-track {
+  -webkit-animation: s_scroll 15s linear infinite;
+          animation: s_scroll 15s linear infinite;
+  display: flex;
+  width: calc(250px * 14);
+}
+.slider_bl .slide_bl {
+  height: 100px;
+  width: 250px;
+}
+/*./[CSS] Infinite autoplay carousel-fork*/

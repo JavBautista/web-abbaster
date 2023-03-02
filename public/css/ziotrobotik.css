@@ -1,0 +1,145 @@
+body{
+  font-family: 'Oxanium', cursive;
+
+}
+pre {
+    white-space: pre-wrap;       /* Since CSS 2.1 */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: break-word;
+}
+
+.bg-ziot{
+  background-color: #1e4357;
+}
+
+.navbar-ziotrobotik {
+  background-color: #1e4357 !important;
+  color:#fff !important;
+  -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04) !important;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04) !important;
+}
+
+.navbar-ziotrobotik a{
+  color:#fff !important;
+}
+
+.btn-ziot-red {
+  background-color: #c81d1e;
+  color: white;
+}
+
+.btn-ziot-red:hover {
+  background-color: #f1f2f2;
+  color:#000;
+}
+
+.btn-ziotrobotik, .btn-ziot-blue {
+  background-color: #1e4357;
+  color: white;
+}
+
+.btn-ziotrobotik:hover, .btn-ziot-blue:hover {
+  background-color: #3d6276;
+  color: #fff;
+}
+
+
+/* CUSTOMIZE THE CAROUSEL
+-------------------------------------------------- */
+
+/* Carousel base class */
+.carousel {
+  margin-bottom: 4rem;
+}
+/* Since positioning the image, we need to help out the caption */
+.carousel-caption {
+  bottom: 3rem;
+  z-index: 10;
+}
+
+/* Declare heights because of positioning of img element */
+.carousel-item {
+  /*
+  height: 32rem;
+  */
+  background-color: #777;
+}
+.carousel-item > img {
+
+  display: block;
+  height: auto;
+  max-width: 100%;
+  line-height: 1;
+  width: 100%;
+  /*position: relative;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  height: 32rem;
+  */
+}
+
+
+/* PRESENTACION CONTENT
+-------------------------------------------------- */
+.presentacion{
+   margin-bottom: 1.5rem;
+}
+
+
+
+/* MARKETING CONTENT
+-------------------------------------------------- */
+
+/* Center align the text within the three columns below the carousel */
+.marketing .col-lg-4 {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+.marketing h2 {
+  font-weight: 400;
+}
+.marketing .col-lg-4 p {
+  margin-right: .75rem;
+  margin-left: .75rem;
+}
+
+
+/* Featurettes
+------------------------- */
+
+.featurette-divider {
+  margin: 5rem 0; /* Space out the Bootstrap <hr> more */
+}
+
+/* Thin out the marketing headings */
+.featurette-heading {
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -.05rem;
+}
+
+
+/* RESPONSIVE CSS
+-------------------------------------------------- */
+
+@media (min-width: 40em) {
+  /* Bump up size of carousel content */
+  .carousel-caption p {
+    margin-bottom: 1.25rem;
+    font-size: 1.25rem;
+    line-height: 1.4;
+  }
+
+  .featurette-heading {
+    font-size: 50px;
+  }
+}
+
+@media (min-width: 62em) {
+  .featurette-heading {
+    margin-top: 7rem;
+  }
+}
