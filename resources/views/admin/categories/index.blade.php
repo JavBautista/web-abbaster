@@ -5,7 +5,8 @@
 <div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-md-10">
-            <p><a href="{{ route('categories.add',['shop_id'=>$shop->id]) }}" class="btn btn-outline-primary float-right mb-2">Nueva Categoria</a></p>
+            <p><a href="{{ route('categories.add',['shop_id'=>$shop->id]) }}" class="btn btn-outline-primary float-right mb-2">Nueva</a></p>
+            
             <p><a href="{{ route('categories.slugs',['shop_id'=>$shop->id]) }}" class="btn btn-secondary mb-2">Admin. Slugs</a> &nbsp;<a href="{{ route('categories.order_by',['shop_id'=>$shop->id]) }}" class="btn btn-secondary mb-2">Admin. Orden</a></p>
             <table class="table">
                 <thead>

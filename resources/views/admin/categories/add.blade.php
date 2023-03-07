@@ -7,7 +7,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">    
             <h2>Nueva Cetgoria</h2>
-            <form action="{{ route('categories.create',['id_shop'=>$shop->id]) }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('categories.create',['shop_id'=>$shop->id]) }}" method="post" enctype="multipart/form-data">
               {{ csrf_field() }} 
               <div class="form-group">
                 <label for="name">Category Name</label>
