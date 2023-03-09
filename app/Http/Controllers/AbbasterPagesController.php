@@ -193,8 +193,13 @@ class AbbasterPagesController extends Controller
     public function payment(){
         $shops   = Shop::where('status',0)->get();
         $purchase_id=(Session::has('purchase_id'))?Session::get('purchase_id'):0;
+        $purchase = Purchase::with('Customer')
+        	->with('PurchaseDetail')
+            ->where('id',$purchase_id)->firstOrFail();
+        //dd($purchase);
+        $purchase_id=(Session::has('purchase_id'))?Session::get('purchase_id'):0;
         if($purchase_id){
-            return view('payment',['shops'=>$shops]);
+            return view('payment',['shops'=>$shops, 'purchase'=>$purchase]);
         }else{
             return redirect('/shopping-cart');
         }

@@ -101,15 +101,23 @@ class CategoriesController extends Controller
     
 
     public function create(CreateCategoryRequest $request,$shop_id){
-        $image = $request->file('image');
-        $category = Category::create([
-            'name'=>$request->input('name'),
-            'description'=>$request->input('description'),
-            'status'=>$request->input('status'),
-            'image'=> $image->store('categories','public'),
-            'root'=>$request->input('root'),
-            'shop_id'=>$shop_id,
-        ]);
+        
+        $categoryData = [
+            'name' => $request->input('name'),
+            'description' => $request->input('description'),
+            'status' => $request->input('status'),
+            'root' => $request->input('root'),
+            'shop_id' => $shop_id,
+        ];
+        
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $categoryData['image'] = $image->store('categories', 'public');
+        }else{
+            $categoryData['image'] = ''; 
+        }
+        
+        $category = Category::create($categoryData);
 
         return redirect("/dashboard/store/$shop_id/categories");
     }

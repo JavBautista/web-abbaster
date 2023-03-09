@@ -35,21 +35,21 @@
           <li class="breadcrumb-item"><a href="/dashboard">Index</a></li>
           <li class="breadcrumb-item"><a href="{{ route('store.index', [ 'id'=>$shop->id] ) }}">{{ $shop->name }}</a></li>
 
-          <li class="breadcrumb-item"><a href="{{ route('dashboard.store.web.images_carousel', [ 'id'=>$shop->id] ) }}">Images Carousel</a></li>
+          <li class="breadcrumb-item"><a href="{{ route('dashboard.store.web.images_carousel', [ 'shop_id'=>$shop->id] ) }}">Images Carousel</a></li>
           <li class="breadcrumb-item active" aria-current="page">Add</li>
           @break
     @case('images_carousel_edit')
           <li class="breadcrumb-item"><a href="/dashboard">Index</a></li>
           <li class="breadcrumb-item"><a href="{{ route('store.index', [ 'id'=>$shop->id] ) }}">{{ $shop->name }}</a></li>
 
-          <li class="breadcrumb-item"><a href="{{ route('dashboard.store.web.images_carousel', [ 'id'=>$shop->id] ) }}">Images Carousel</a></li>
+          <li class="breadcrumb-item"><a href="{{ route('dashboard.store.web.images_carousel', [ 'shop_id'=>$shop->id] ) }}">Images Carousel</a></li>
           <li class="breadcrumb-item active" aria-current="page">Edit</li>
           @break
     @case('images_carousel_remove')
           <li class="breadcrumb-item"><a href="/dashboard">Index</a></li>
           <li class="breadcrumb-item"><a href="{{ route('store.index', [ 'id'=>$shop->id] ) }}">{{ $shop->name }}</a></li>
 
-          <li class="breadcrumb-item"><a href="{{ route('dashboard.store.web.images_carousel', [ 'id'=>$shop->id] ) }}">Images Carousel</a></li>
+          <li class="breadcrumb-item"><a href="{{ route('dashboard.store.web.images_carousel', [ 'shop_id'=>$shop->id] ) }}">Images Carousel</a></li>
           <li class="breadcrumb-item active" aria-current="page">Eliminar</li>
           @break
 

@@ -50,8 +50,9 @@ class ProveedoresController extends Controller
      */
     public function create(CreateProveedorRequest $request)
     {
-        $image = $request->file('image');
-        $proveedor = Proveedor::create([
+
+
+        $proveedorData = [
             'shop_id'=>$request->input('shop_id'),
             'name'=>$request->input('name'),
             'description'=>$request->input('description'),
@@ -60,10 +61,17 @@ class ProveedoresController extends Controller
             'address'=>$request->input('address'),
             'email'=>$request->input('email'),
             'commentary'=>$request->input('commentary'),
-            'image'=> $image->store('proveedores','public'),
-            //'image'=>'https://lorempixel.com/600/338/?'.mt_rand(0,1000),
-            
-        ]);
+        ];
+        
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $proveedorData['image'] = $image->store('proveedores', 'public');
+        }else{
+            $proveedorData['image'] = ''; 
+        }
+        
+        $proveedor = Proveedor::create($proveedorData);
+
         $shop_id=$request->input('shop_id');
         return redirect("/dashboard/store/$shop_id/proveedores");
     }

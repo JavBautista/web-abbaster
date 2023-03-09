@@ -18,8 +18,8 @@
 	    	@break
 	    @case('warehouse.index')
 	    	<li class="breadcrumb-item"><a href="/dashboard">Index</a></li>
-	    	<li class="breadcrumb-item"><a href="{{ route('cedis') }}">CEDIS</a></li>
-	    	<li class="breadcrumb-item active" aria-current="page">Almacenes</li>
+
+			<li class="breadcrumb-item active" aria-current="page">Almacenes</li>
 	    	@break
 	    @case('warehouse.create')
 	    	<li class="breadcrumb-item"><a href="/dashboard">Index</a></li>
