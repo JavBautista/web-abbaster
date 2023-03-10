@@ -11,18 +11,6 @@
 
 	// Crea un ítem en la preferencia
 
-	$detail = $purchase->PurchaseDetail;
-	
-	$products=[];
-	foreach ($detail as $data) {
-		$item = new MercadoPago\Item();
-		$item->title = $data->name;
-		$item->quantity = $data->qty;
-		$item->unit_price = $data->price;
-		$products[]=$item;
-	}
-
-	/*
 	$item = new MercadoPago\Item();
 	$item->title = 'Mi producto 1';
 	$item->quantity = 1;
@@ -34,7 +22,6 @@
 	$item->quantity = 3;
 	$item->unit_price = 99.5;
 	$products[]=$item;
-	*/
 
 	//$preference->items = array($item);
 	$preference->items = $products;
@@ -50,10 +37,17 @@
 	@endphp
 
 	<payment></payment>
+	<hr>
+
+	<p>	Probando </p>
+	<!--<form action="/payment/paypal/generate" method="post">
+		@csrf
+		<button type="submit" class="btn btn-success btn-block mb-4 mx-2">COMPRAR CON PAYPAL</button>
+	</form>-->
 
 	<div class="cho-container"></div>
 
-
+	// SDK MercadoPago.js
 	<script src="https://sdk.mercadopago.com/js/v2"></script>
 
 	<script>

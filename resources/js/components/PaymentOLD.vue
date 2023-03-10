@@ -103,7 +103,7 @@
       </div><!--./class="row"-->
     </div><!--./container-->
     <hr>
-
+    <button type="button" class="btn btn-primary btn-block mb-2 mx-2" @click="paymentMercadoPago()">COMPRAR CON MERCADO PAGO</button>
   </main>
 </template>
 
@@ -130,6 +130,24 @@
           .finally(function () {
             // always executed
           });
+        },
+        paymentMercadoPago(){
+          let me=this
+          axios.get('/payment/get-prefrence-mercado-pago').then(function (response) {
+            console.log(response)
+            var url_redirect = response.data
+            if(response.status == 200){
+                window.location  = url_redirect;
+            }
+          })
+          .catch(function (error) {
+            // handle error
+            console.log(error);
+          })
+          .finally(function () {
+            // always executed
+          });
+
         },
 
     	},

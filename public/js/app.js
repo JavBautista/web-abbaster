@@ -117663,21 +117663,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }).finally(function () {
         // always executed
       });
-    },
-    paymentMercadoPago: function paymentMercadoPago() {
-      var me = this;
-      axios.get('/payment/get-prefrence-mercado-pago').then(function (response) {
-        console.log(response);
-        var url_redirect = response.data;
-        if (response.status == 200) {
-          window.location = url_redirect;
-        }
-      }).catch(function (error) {
-        // handle error
-        console.log(error);
-      }).finally(function () {
-        // always executed
-      });
     }
   },
   mounted: function mounted() {
@@ -117955,21 +117940,7 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _c("hr"),
-    _vm._v(" "),
-    _c(
-      "button",
-      {
-        staticClass: "btn btn-primary btn-block mb-2 mx-2",
-        attrs: { type: "button" },
-        on: {
-          click: function($event) {
-            return _vm.paymentMercadoPago()
-          }
-        }
-      },
-      [_vm._v("COMPRAR CON MERCADO PAGO")]
-    )
+    _c("hr")
   ])
 }
 var staticRenderFns = [
