@@ -9,6 +9,11 @@
 	// Crea un objeto de preferencia
 	$preference = new MercadoPago\Preference();
 
+	$shipments = new MercadoPago\Shipments();
+	$shipments->cost = (float) $shipping;
+	$shipments->mode = 'not_specified';
+
+	$preference->shipments = $shipments;
 	// Crea un ítem en la preferencia
 
 	$detail = $purchase->PurchaseDetail;
@@ -51,6 +56,7 @@
 
 	<payment></payment>
 
+	
 	<div class="cho-container"></div>
 
 

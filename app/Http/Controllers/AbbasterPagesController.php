@@ -21,6 +21,7 @@ use App\WebContentSeccionCrece;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Session;
 use Cart;
+use App\Shipping;
 
 class AbbasterPagesController extends Controller
 {
@@ -190,16 +191,30 @@ class AbbasterPagesController extends Controller
         }*/
     }
 
-    public function payment(){
+    public function payment(Request $request){
+        //dd($request);
         $shops   = Shop::where('status',0)->get();
+
         $purchase_id=(Session::has('purchase_id'))?Session::get('purchase_id'):0;
         $purchase = Purchase::with('Customer')
         	->with('PurchaseDetail')
             ->where('id',$purchase_id)->firstOrFail();
-        //dd($purchase);
+        
+        $cart = Cart::content();
+		$subtotal= str_replace(",","",Cart::subtotal());
+		$tax=  str_replace(",","",Cart::tax());
+		$total= str_replace(",","", Cart::total() );
+        
+        $shop_id=1;
+        $config_shipping=Shipping::find($shop_id);
+		//Como el Shippping no viene dentro del carro de compras
+		//Se lo sumamos manualmente al total
+		$shipping=($total<$config_shipping->shipping_from)?$config_shipping->shipping_cost:0;
+
+        
         $purchase_id=(Session::has('purchase_id'))?Session::get('purchase_id'):0;
         if($purchase_id){
-            return view('payment',['shops'=>$shops, 'purchase'=>$purchase]);
+            return view('payment',['shops'=>$shops, 'purchase'=>$purchase,'shipping'=>$shipping]);
         }else{
             return redirect('/shopping-cart');
         }

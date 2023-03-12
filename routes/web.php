@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\store;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
