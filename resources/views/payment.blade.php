@@ -41,6 +41,7 @@
 	*/
 	$preference->back_urls = array(
 	    "success" => route('mp.pay'),
+	    "pending" => route('mp.pay'),
 	);
 	$preference->auto_return = "approved";
 

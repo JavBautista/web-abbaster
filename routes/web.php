@@ -56,7 +56,7 @@ Route::get('/confirm-payment', 'AbbasterPagesController@confirmPayment');
 
 /*----------------------------------------------------------------------------------------- */
 /*----------------------------------------------------------------------------------------- */
-Route::get('/payment', 'AbbasterPagesController@payment');
+Route::get('/payment', 'AbbasterPagesController@payment')->name('payment.payment');
 Route::get('/payment/show', 'AbbasterPagesController@paymentShow')->name('payment.show');
 
 Route::get('/payment/pay', 'AbbasterPagesController@pay')->name('mp.pay');

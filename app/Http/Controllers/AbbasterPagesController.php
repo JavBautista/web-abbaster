@@ -259,8 +259,25 @@ class AbbasterPagesController extends Controller
             $purchase->payment_method ='MercadoPago';
             $purchase->no_transaction =$payment_id;
             $purchase->save();
+            Cart::destroy();
+            Session::forget('session_discount_code');
+            Session::forget('session_type_discount');
+            Session::forget('session_discount');
+            return redirect()->route('payment.success');
         }
-        return redirect()->route('payment.success');
+        if($status=='pending'){
+            $purchase = Purchase::findOrFail($purchase_id);
+            $purchase->payment_method ='MercadoPago';
+            $purchase->no_transaction =$payment_id;
+            $purchase->save();
+            Cart::destroy();
+            Session::forget('session_discount_code');
+            Session::forget('session_type_discount');
+            Session::forget('session_discount');
+            return redirect()->route('payment.success');
+        }
+        return redirect()->route('payment.payment');
+
     }
 
 }
