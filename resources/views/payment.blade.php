@@ -27,44 +27,43 @@
 		$products[]=$item;
 	}
 
-	/*
-	$item = new MercadoPago\Item();
-	$item->title = 'Mi producto 1';
-	$item->quantity = 1;
-	$item->unit_price = 75.56;
-	$products[]=$item;
 
-	$item = new MercadoPago\Item();
-	$item->title = 'Mi producto 2';
-	$item->quantity = 3;
-	$item->unit_price = 99.5;
-	$products[]=$item;
-	*/
 
 	//$preference->items = array($item);
 	$preference->items = $products;
 
-	/*$preference->back_urls = array(
+	/*
+	$preference->back_urls = array(
 	    "success" => "https://www.tu-sitio/success",
 	    "failure" => "http://www.tu-sitio/failure",
 	    "pending" => "http://www.tu-sitio/pending"
 	);
-	$preference->auto_return = "approved";*/
+	*/
+	$preference->back_urls = array(
+	    "success" => route('mp.pay'),
+	);
+	$preference->auto_return = "approved";
 
 	$preference->save();
 	@endphp
 
 	<payment></payment>
 
+	<div class="row">
+		<div class="col">
+			<div class="container">
+				<div class="cho-container" style="float: right;"></div>
+			</div>	
+		</div>
+	</div>
+	<hr>
 	
-	<div class="cho-container"></div>
-
 
 	<script src="https://sdk.mercadopago.com/js/v2"></script>
 
 	<script>
 	  const mp = new MercadoPago("{{ config('services.mercadopago.key') }}", {
-	    locale: 'es-AR'
+	    locale: 'es-MX'
 	  });
 
 	  mp.checkout({
@@ -78,3 +77,4 @@
 	  });
 	</script>
 @endsection
+

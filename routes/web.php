@@ -53,7 +53,17 @@ Route::get('/select-currency','AbbasterPagesController@selectCurrency');
 
 Route::get('/shopping-cart', 'AbbasterPagesController@shoppingCart');
 Route::get('/confirm-payment', 'AbbasterPagesController@confirmPayment');
+
+/*----------------------------------------------------------------------------------------- */
+/*----------------------------------------------------------------------------------------- */
 Route::get('/payment', 'AbbasterPagesController@payment');
+Route::get('/payment/show', 'AbbasterPagesController@paymentShow')->name('payment.show');
+
+Route::get('/payment/pay', 'AbbasterPagesController@pay')->name('mp.pay');
+
+Route::post('/mpwebhooks', 'MPWebhooksController');
+/*----------------------------------------------------------------------------------------- */
+/*----------------------------------------------------------------------------------------- */
 
 Route::post('/confirm-payment/store-address', 'ShoppingCartController@guardarDireccionEnvioCliente');
 
@@ -85,7 +95,7 @@ Route::post('/payment/paypal', 'PaypalController@store');
 Route::post('/payment/paypal/generate', 'PaypalController@paymentPayPal');
 Route::get('/payment/paypal/status', 'PaypalController@getPaymentStatus');
 */
-Route::get('/shopping-cart/payment-success', 'ShoppingCartController@paymentSuccessGral');
+Route::get('/shopping-cart/payment-success', 'ShoppingCartController@paymentSuccessGral')->name('payment.success');
 Route::get('/shopping-cart/payment-finish', 'ShoppingCartController@paymentFinishGral');
 
 #--------------------------------------------------------------------------------------------------------------------

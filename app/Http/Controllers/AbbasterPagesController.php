@@ -20,8 +20,11 @@ use App\WebContentSeccionTestimonios;
 use App\WebContentSeccionCrece;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Session;
-use Cart;
+//use Cart;
+use Gloudemans\Shoppingcart\Facades\Cart;
 use App\Shipping;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Storage;
 
 class AbbasterPagesController extends Controller
 {
@@ -226,4 +229,38 @@ class AbbasterPagesController extends Controller
         Session::put('currency',$request->currency);
         return back();
     }
+
+    public function paymentShow(Request $request){
+        $shops   = Shop::where('status',0)->get();
+        return view('payment_show',[
+            'shops'=>$shops,
+        ]);
+    }
+
+    
+    public function pay(Request $request){
+   
+        $payment_id = $request->get('payment_id');
+        
+        $accessToken = env('MP_ACCESS_TOKEN');
+        //dd($accessToken);
+        //dd("https://api.mercadopago.com/v1/payments/$payment_id"."?access_token=$accessToken");
+        $response = Http::get("https://api.mercadopago.com/v1/payments/$payment_id"."?access_token=$accessToken");
+        $response = json_decode($response);
+        //dump($response);
+        $status = $response->status;
+        
+        
+        $purchase_id=(Session::has('purchase_id'))?Session::get('purchase_id'):0;
+        
+        if($status=='approved'){
+            $purchase = Purchase::findOrFail($purchase_id);
+            $purchase->status =3;
+            $purchase->payment_method ='MercadoPago';
+            $purchase->no_transaction =$payment_id;
+            $purchase->save();
+        }
+        return redirect()->route('payment.success');
+    }
+
 }
