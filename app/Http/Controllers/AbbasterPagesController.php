@@ -245,13 +245,13 @@ class AbbasterPagesController extends Controller
         
         $accessToken = config('services.mercadopago.token');
         //dump($accessToken);
-        dump("https://api.mercadopago.com/v1/payments/$payment_id"."?access_token=$accessToken");
+        //dump("https://api.mercadopago.com/v1/payments/$payment_id"."?access_token=$accessToken");
         $response = Http::get("https://api.mercadopago.com/v1/payments/$payment_id"."?access_token=$accessToken");
         $response = json_decode($response);
         
-        dump($response);
+        //dump($response);
         $status = $response->status;
-        dd($status);
+        //dd($status);
         
         //dd($purchase_id);
         if($purchase_id>0){
