@@ -248,14 +248,15 @@ class AbbasterPagesController extends Controller
         //dd("https://api.mercadopago.com/v1/payments/$payment_id"."?access_token=$accessToken");
         $response = Http::get("https://api.mercadopago.com/v1/payments/$payment_id"."?access_token=$accessToken");
         $response = json_decode($response);
-        
+        dump($response);
         $status = $response->status;
-        
+        dd($status);
         
         //dd($purchase_id);
         if($purchase_id>0){
 
             $purchase = Purchase::find($purchase_id);
+
             $purchase->payment_method ='MercadoPago';
             $purchase->no_transaction =$payment_id;
             
