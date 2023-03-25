@@ -243,7 +243,8 @@ class AbbasterPagesController extends Controller
         $success=false;
         $payment_id = $request->get('payment_id');
         
-        echo env('APP_NAME');
+        $tmp = config('services.mercadopago.token');
+        echo $tmp;
         echo '-----';
         echo env('MP_ACCESS_TOKEN');
 
