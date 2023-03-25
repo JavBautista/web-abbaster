@@ -62,6 +62,8 @@
                             <h5>Compra #{{$sale->id}}</h5><span class="small text-muted">{{$sale->created_at}}</span>
                             <p><strong>Status:</strong>&nbsp;{{$desc_status}}</p>
                             <p><strong>Pago:</strong>&nbsp;{{$sale->payment_method}}</p>
+                            <p><strong>#OP.EXT:</strong>&nbsp;{{$sale->no_transaction}}</p>
+                            
                             <p><strong>Total:</strong>&nbsp;${{$sale->total}}</p>
                             <a class="btn btn-sm btn-info" href="{{ route('dashboard.store.sales.view',['shop_id'=> $shop->id,'sale_id'=> $sale->id]) }}"><span class="fa fa-eye"></span>
                             </a>

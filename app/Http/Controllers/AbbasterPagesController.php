@@ -7,7 +7,6 @@ use App\GlobalWebCarousel;
 use App\Http\Requests\SearchRequest;
 use App\Shop;
 use App\Product;
-use App\Category;
 use App\Purchase;
 use App\WebSection;
 use App\WebContentTestimonios;
@@ -18,9 +17,7 @@ use App\WebContentSeccionMetodosPagos;
 use App\WebContentSeccionCarousel;
 use App\WebContentSeccionTestimonios;
 use App\WebContentSeccionCrece;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Session;
-//use Cart;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use App\Shipping;
 use Illuminate\Support\Facades\Http;
@@ -239,7 +236,11 @@ class AbbasterPagesController extends Controller
 
     
     public function pay(Request $request){
-   
+        
+        $purchase_id=(Session::has('purchase_id'))?Session::get('purchase_id'):0;
+        
+        
+        $success=false;
         $payment_id = $request->get('payment_id');
         
         $accessToken = env('MP_ACCESS_TOKEN');
@@ -247,36 +248,41 @@ class AbbasterPagesController extends Controller
         //dd("https://api.mercadopago.com/v1/payments/$payment_id"."?access_token=$accessToken");
         $response = Http::get("https://api.mercadopago.com/v1/payments/$payment_id"."?access_token=$accessToken");
         $response = json_decode($response);
-        //dump($response);
+        
         $status = $response->status;
         
         
-        $purchase_id=(Session::has('purchase_id'))?Session::get('purchase_id'):0;
+        //dd($purchase_id);
+        if($purchase_id>0){
+
+            $purchase = Purchase::find($purchase_id);
+            $purchase->payment_method ='MercadoPago';
+            $purchase->no_transaction =$payment_id;
+            
+            if($status=='approved' || $status=='pending'){
+                if($status=='approved'){
+                    $purchase->status =3;            
+                }
+                if($status=='pending'){
+                    $purchase->status =2;            
+                }
+                Cart::destroy();
+                Session::forget('session_discount_code');
+                Session::forget('session_type_discount');
+                Session::forget('session_discount');
+                $success=true;
+                
+            }
+            $purchase->save();
+        }//$purchase_id>0
         
-        if($status=='approved'){
-            $purchase = Purchase::findOrFail($purchase_id);
-            $purchase->status =3;
-            $purchase->payment_method ='MercadoPago';
-            $purchase->no_transaction =$payment_id;
-            $purchase->save();
-            Cart::destroy();
-            Session::forget('session_discount_code');
-            Session::forget('session_type_discount');
-            Session::forget('session_discount');
+
+       if($success){
             return redirect()->route('payment.success');
+        }else{
+            return redirect()->route('payment.payment');
         }
-        if($status=='pending'){
-            $purchase = Purchase::findOrFail($purchase_id);
-            $purchase->payment_method ='MercadoPago';
-            $purchase->no_transaction =$payment_id;
-            $purchase->save();
-            Cart::destroy();
-            Session::forget('session_discount_code');
-            Session::forget('session_type_discount');
-            Session::forget('session_discount');
-            return redirect()->route('payment.success');
-        }
-        return redirect()->route('payment.payment');
+        
 
     }
 
