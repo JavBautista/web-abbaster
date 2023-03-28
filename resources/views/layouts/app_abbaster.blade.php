@@ -38,13 +38,17 @@
     $style=($abbaster_info->style_color_bg!='')?"color: $abbaster_info->style_color_txt !important; background-color: $abbaster_info->style_color_bg !important;":'';
   @endphp
   <div id="app">
-    <nav class="navbar navbar-expand-lg bg-abbaster" style="{{$style}}" >
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="{{$style}}" >
     <div class="container" style="{{$style}}" >
-      <div class="navbar-toggler-right">
+      
+      <!--<div class="navbar-toggler-right">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-abbaster" aria-controls="navbar-abbaster" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-      </div>
+      </div>-->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-abbaster" aria-controls="navbar-abbaster" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
       <div class="collapse navbar-collapse flex-column" id="navbar-abbaster" style="{{$style}}" >
         <ul class="navbar-nav w-100 justify-content-left" style="{{$style}}" >
