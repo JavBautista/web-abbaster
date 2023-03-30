@@ -47,6 +47,7 @@ Vue.component('visitas-web-mes', require('./components/MetricasVisitasWebMes.vue
 Vue.component('payment', require('./components/Payment.vue'));
 Vue.component('product-comentarios', require('./components/ProductComentarios.vue'));
 Vue.component('questions-products', require('./components/QuestionsProducts.vue'));
+Vue.component('section-price-cripto', require('./components/SectionPriceCripto.vue'));
 Vue.component('shopping-cart', require('./components/ShoppingCart.vue'));
 Vue.component('warehouse-component', require('./components/Warehouse.vue'));
 

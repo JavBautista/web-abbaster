@@ -5,14 +5,13 @@
       $crc = Session::has('currency')?Session::get('currency'):'MXN';
     @endphp
 
-    <label for="currency" class="col-sm-6 col-form-label col-form-label-sm"><strong><em>TC: ${{ number_format(getTipoCambio(),2) }}</em></strong></label>
+    <label for="currency" class="col-sm-8 col-form-label col-form-label-sm"><strong><em>TC: ${{ number_format(getTipoCambio(),2) }}</em></strong></label>
 
-    <div class="col-sm-6">
+    <div class="col-sm-4">
       <select class="form-control form-control-sm" id="currency" name="currency" onchange="this.form.submit()">
         <option value="MXN" {{  $crc=='MXN'?'selected':'' }}>MXN</option>
         <option value="USD" {{  $crc=='USD'?'selected':'' }}>USD</option>
       </select>
     </div>
   </div>
-
 </form>

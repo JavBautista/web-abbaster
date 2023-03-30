@@ -23,6 +23,15 @@
 //@import '~@fortawesome/fontawesome-free/scss/brands.scss';
 //@import '~@fortawesome/fontawesome-free/scss/regular.scss';
 
+@media (max-width: 767px) {
+  .flex-wrap {
+    flex-wrap: wrap !important;
+  }
+  .navbar-collapse:not(.show) {
+    display: none !important;
+  }
+}
+
 .txt-orange{
   color:#ffa500;
 }

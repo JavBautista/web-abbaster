@@ -39,194 +39,221 @@
   @endphp
   <div id="app">
     <nav class="navbar navbar-expand-lg navbar-light bg-light" style="{{$style}}" >
-    <div class="container" style="{{$style}}" >
-      
-      <!--<div class="navbar-toggler-right">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-abbaster" aria-controls="navbar-abbaster" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-      </div>-->
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-abbaster" aria-controls="navbar-abbaster" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse flex-column" id="navbar-abbaster" style="{{$style}}" >
-        <ul class="navbar-nav w-100 justify-content-left" style="{{$style}}" >
-          <li class="nav-item active">
+      <div class="container" style="{{$style}}" >
+        
+        <div class="row w-100">
+          <div class="col col-2 col-sm-auto">
+            
             <a class="nav-link navbar-brand" href="/"></a>
-          </li>
-          <li class="nav-item active w-50">
+          </div>
+          <div class="col">
             <form class="form-inline d-inline w-100" action="{{ route('ababster.search') }}">
-              <div class="input-group mt-1">
+              <div class="input-group input-group-sm mt-1">
                 <input type="text" name="query" class="form-control" placeholder="Cerraduras, cámaras, GPS, etc." aria-label="Recipient's username" aria-describedby="button-addon2">
                 <div class="input-group-append">
                   <button class="btn btn-outline-light" id="button-addon2"><i class="fa fa-search"></i></button>
                 </div>
               </div>
             </form>
-          </li>
-          <li class="nav-item">
-            <a href="/access/" class="nav-link" style="{{$style}}" >
-             Obtener envío gratis <i class="fa fa-thumbs-up"></i>
-            </a>
-          </li>
+          </div>
+          <div class="col col-2 col-sm-auto">
+            @php
+                $cart=existeShoppingCart();
+                $count_cart= $cart->count();
+              @endphp
+              @if($count_cart)
+                <div class="nav-item dropdown">
+                  <a style="{{$style}}"  class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-shopping-cart fa-2x"></i>
+                    <span class="badge badge-pill badge-danger">{{$count_cart}}</span>
+                  </a>
+                  <div class="dropdown-menu">
+                    <ul class="list-group">
+                      @foreach($cart as $row)
+                      <li class="list-group-item small"><strong><em>{{$row->qty}}</em></strong>&nbsp;{{ \Illuminate\Support\Str::limit($row->name, 25, $end='...') }}</li>
+                      @endforeach
+                    </ul>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="/shopping-cart">Vamos al carro de compras</a>
+                  </div>
+                </div>
+              @else
+                
+                <a style="{{$style}}"  href="/shopping-cart" class="nav-link"><span class="fa fa-shopping-cart fa-2x"></span>&nbsp;</a>
+               
+              @endif
+          </div>
+        </div>        
+      </div>
+    </nav>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="{{$style}}" >
+      <div class="container" style="{{$style}}" >
+        
+        <button class="navbar-toggler mb-2" type="button" data-toggle="collapse" data-target="#navbar-abbaster" aria-controls="navbar-abbaster" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-
-          @if(trim($abbaster_info->facebook))
-            <li class="nav-item">
-               <a href="{{ $abbaster_info->facebook}}" style="{{$style}}"  class="nav-link"><span class="fab fa-facebook fa-2x"></span></a>
+        <div class="collapse navbar-collapse w-100 flex-column" id="navbar-abbaster" style="{{$style}}" >
+          <ul class="navbar-nav w-100 justify-content-left" style="{{$style}}" >
+           
+            <li class="nav-item flex-fill">
+              <a href="/access/" class="nav-link" style="{{$style}}" >
+              Obtener envío gratis <i class="fa fa-thumbs-up"></i>
+              </a>
             </li>
-          @endif
-          @if(trim($abbaster_info->twitter))
-            <li class="nav-item">
-               <a href="{{ $abbaster_info->twitter }}"  style="{{$style}}" class="nav-link"><span class="fab fa-twitter fa-2x"></span></a>
-            </li>
-          @endif
-          @if(trim($abbaster_info->instagram))
-            <li class="nav-item">
-               <a href="{{ $abbaster_info->instagram }}"  style="{{$style}}" class="nav-link"><span class="fab fa-instagram fa-2x"></span></a>
-            </li>
-          @endif
 
-          @if(trim($abbaster_info->pinterest))
-            <li class="nav-item">
-               <a href="{{ $abbaster_info->pinterest }}"  style="{{$style}}" class="nav-link"><span class="fab fa-pinterest fa-2x"></span></a>
-            </li>
-          @endif
-
-          @if(trim($abbaster_info->video_channel))
-            <li class="nav-item">
-               <a href="{{ $abbaster_info->video_channel }}"  style="{{$style}}" class="nav-link"><span class="fab fa-youtube fa-2x"></span></a>
-            </li>
-          @endif
-
-          @php
-            $movil = str_replace(' ','', trim($abbaster_info->movil) );
-            $phone = str_replace(' ','', trim($abbaster_info->phone) );
-          @endphp
-          @if($movil!='')
-            @if($abbaster_info->whatsapp)
-              <li class="nav-item">
-                <a href="{{ 'https://wa.me/521'.$movil }}"  style="{{$style}}" class="nav-link" style="display: flex">
-                  <span class="fab fa-whatsapp fa-2x"></span> &nbsp;Ayuda
-                </a>
-              </li>
-            @else
-              <li class="nav-item">
-                <a href="{{ 'tel:+52'.$movil }}"  style="{{$style}}" class="nav-link" style="display: flex">
-                  <span class="fa fa-mobile fa-2x"></span> &nbsp;Ayuda
-                </a>
-              </li>
-            @endif
-          @endif
-
-          @if($phone!='')
-            <li class="nav-item">
-               <a href="{{ 'tel:+52'.$phone }}"  style="{{$style}}" class="nav-link"><span class="fa fa-phone fa-2x"></span></a>
-            </li>
-          @endif
-
-          <li class="nav-item">
+            <li class="nav-item flex-fill">
               <a href="/access/" style="{{$style}}" class="nav-link">Registrarse</a>
             </li>
 
-        </ul>
-        <ul class="navbar-nav w-100 justify-content-left ">
-          @foreach($shops as $shop)
-            @if($shop->show_main_nav)
-              <li class="nav-item dropdown">
-                <a style="{{$style}}"  class="nav-link dropdown-toggle" href="{{($shop->dynamic)?'/shop/'.$shop->slug:'/'.$shop->slug}}" id="dropdown-shop-nav" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{$shop->name}}</a>
-                <div class="dropdown-menu" aria-labelledby="dropdown-shop-nav">
-                  @php
-                    $limit=0;
-                    $categories=getCategorias();
-                  @endphp
-                  @foreach($categories as $category)
-                    @if($category->shop_id==$shop->id)
-                      @php
-                        $limit++;
+            @php
+              $movil = str_replace(' ','', trim($abbaster_info->movil) );
+              $phone = str_replace(' ','', trim($abbaster_info->phone) );
+            @endphp
 
-                        $link='#';
-                        if($shop->dynamic){
-                          if($category->slug)
-                            $link=route('shops.store.category.slug',['shop_slug'=>$shop->slug, 'category_slug'=>$category->slug]);
-                          else
-                            $link=route('shops.store.category.id',['shop_slug'=>$shop->slug, 'category_id'=>$category->id]);
-                        }else{
-                          if($category->slug)
-                            $link="/".$shop->slug."/categoria/".$category->slug;
-                          else
-                            $link="/".$shop->slug."/category/".$category->id;
-                        }
+            @if($movil!='')
+              @if($abbaster_info->whatsapp)
+                <li class="nav-item flex-fill">
+                  <a href="{{ 'https://wa.me/521'.$movil }}"  style="{{$style}}" class="nav-link" style="display: flex">
+                    Ayuda
+                  </a>
+                </li>
+              @else
+                <li class="nav-item flex-fill">
+                  <a href="{{ 'tel:+52'.$movil }}"  style="{{$style}}" class="nav-link" style="display: flex">
+                    Ayuda
+                  </a>
+                </li>
+              @endif
+            @endif
 
-                      @endphp
-                      <a style="{{$style}}"  class="dropdown-item" href="{{$link}}">{{$category->name}}</a>
-                      @if($limit==10)
-                        @break;
-                      @endif
-                    @endif
-                  @endforeach
-                  <a style="{{$style}}"  class="dropdown-item" href="{{$shop->dynamic?'/shop/'.$shop->slug.'/store':'/'.$shop->slug.'/store'}}">Ver mas...</a>
-                </div>
+
+            @if(trim($abbaster_info->facebook))
+              <li class="nav-item flex-fill">
+                <a href="{{ $abbaster_info->facebook}}" style="{{$style}}"  class="nav-link"><span class="fab fa-facebook fa-2x"></span></a>
               </li>
             @endif
-          @endforeach
+            @if(trim($abbaster_info->twitter))
+              <li class="nav-item flex-fill">
+                <a href="{{ $abbaster_info->twitter }}"  style="{{$style}}" class="nav-link"><span class="fab fa-twitter fa-2x"></span></a>
+              </li>
+            @endif
+            @if(trim($abbaster_info->instagram))
+              <li class="nav-item flex-fill">
+                <a href="{{ $abbaster_info->instagram }}"  style="{{$style}}" class="nav-link"><span class="fab fa-instagram fa-2x"></span></a>
+              </li>
+            @endif
 
+            @if(trim($abbaster_info->pinterest))
+              <li class="nav-item flex-fill">
+                <a href="{{ $abbaster_info->pinterest }}"  style="{{$style}}" class="nav-link"><span class="fab fa-pinterest fa-2x"></span></a>
+              </li>
+            @endif
 
+            @if(trim($abbaster_info->video_channel))
+              <li class="nav-item flex-fill">
+                <a href="{{ $abbaster_info->video_channel }}"  style="{{$style}}" class="nav-link"><span class="fab fa-youtube fa-2x"></span></a>
+              </li>
+            @endif
 
-
-            <li class="nav-item">
-              <a href="https://blog.abbaster.com"class="nav-link" style="{{$style}}" >Blog</a>
-            </li>
-
-            <!--<li class="nav-item">
-              <a href="/como-comprar/"class="nav-link">¿Cómo comprar?</a>
-            </li>-->
-
-
-            <li class="nav-item">
-              @include('parts.form_select_currency')
-            </li>
-
-          @if (Route::has('login'))
-            <li class="nav-item">
-              @auth
-                <a  class="nav-link" href="{{ url('/dashboard') }}" style="{{$style}}" ><i class="fa fa-2x fa-user"></i></a>
+            
+            @if($movil!='')
+              @if($abbaster_info->whatsapp)
+                <li class="nav-item flex-fill">
+                  <a href="{{ 'https://wa.me/521'.$movil }}"  style="{{$style}}" class="nav-link" style="display: flex">
+                    <span class="fab fa-whatsapp fa-2x"></span>
+                  </a>
+                </li>
               @else
-                <a  class="nav-link" href="{{ route('login') }}" style="{{$style}}" > <i class="fa fa-2x fa-user"></i></a>
-              @endauth
-            </li>
-          @endif
+                <li class="nav-item flex-fill">
+                  <a href="{{ 'tel:+52'.$movil }}"  style="{{$style}}" class="nav-link" style="display: flex">
+                    <span class="fa fa-mobile fa-2x"></span>
+                  </a>
+                </li>
+              @endif
+            @endif
 
-        @php
-          $cart=existeShoppingCart();
-          $count_cart= $cart->count();
-        @endphp
-        @if($count_cart)
-          <li class="nav-item dropdown">
-            <a style="{{$style}}"  class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-              <i class="fa fa-shopping-cart fa-2x"></i>
-              <span class="badge badge-pill badge-danger">{{$count_cart}}</span>
-            </a>
-            <div class="dropdown-menu">
-              <ul class="list-group">
-                @foreach($cart as $row)
-                <li class="list-group-item small"><strong><em>{{$row->qty}}</em></strong>&nbsp;{{ \Illuminate\Support\Str::limit($row->name, 25, $end='...') }}</li>
-                @endforeach
-              </ul>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="/shopping-cart">Vamos al carro de compras</a>
-            </div>
-          </li>
-        @else
-          <li class="nav-item">
-             <a style="{{$style}}"  href="/shopping-cart" class="nav-link"><span class="fa fa-shopping-cart fa-2x"></span>&nbsp;</a>
-          </li>
-        @endif
-        </ul>
-        <!---->
+            @if($phone!='')
+              <li class="nav-item flex-fill">
+                <a href="{{ 'tel:+52'.$phone }}"  style="{{$style}}" class="nav-link"><span class="fa fa-phone fa-2x"></span></a>
+              </li>
+            @endif
+
+            
+
+          </ul>
+          <ul class="navbar-nav w-100 justify-content-left ">
+            @foreach($shops as $shop)
+              @if($shop->show_main_nav)
+                <li class="nav-item flex-fill dropdown">
+                  <a style="{{$style}}"  class="nav-link dropdown-toggle" href="{{($shop->dynamic)?'/shop/'.$shop->slug:'/'.$shop->slug}}" id="dropdown-shop-nav" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{$shop->name}}</a>
+                  <div class="dropdown-menu" aria-labelledby="dropdown-shop-nav">
+                    @php
+                      $limit=0;
+                      $categories=getCategorias();
+                    @endphp
+                    @foreach($categories as $category)
+                      @if($category->shop_id==$shop->id)
+                        @php
+                          $limit++;
+
+                          $link='#';
+                          if($shop->dynamic){
+                            if($category->slug)
+                              $link=route('shops.store.category.slug',['shop_slug'=>$shop->slug, 'category_slug'=>$category->slug]);
+                            else
+                              $link=route('shops.store.category.id',['shop_slug'=>$shop->slug, 'category_id'=>$category->id]);
+                          }else{
+                            if($category->slug)
+                              $link="/".$shop->slug."/categoria/".$category->slug;
+                            else
+                              $link="/".$shop->slug."/category/".$category->id;
+                          }
+
+                        @endphp
+                        <a style="{{$style}}"  class="dropdown-item" href="{{$link}}">{{$category->name}}</a>
+                        @if($limit==10)
+                          @break;
+                        @endif
+                      @endif
+                    @endforeach
+                    <a style="{{$style}}"  class="dropdown-item" href="{{$shop->dynamic?'/shop/'.$shop->slug.'/store':'/'.$shop->slug.'/store'}}">Ver mas...</a>
+                  </div>
+                </li>
+              @endif
+            @endforeach
+
+
+
+
+              <li class="nav-item flex-fill">
+                <a href="https://blog.abbaster.com"class="nav-link" style="{{$style}}" >Blog</a>
+              </li>
+
+              <!--<li class="nav-item">
+                <a href="/como-comprar/"class="nav-link">¿Cómo comprar?</a>
+              </li>-->
+
+              
+              <li class="nav-item flex-fill">
+                @include('parts.form_select_currency')
+              </li>
+
+            @if (Route::has('login'))
+              <li class="nav-item flex-fill ml-4">
+                @auth
+                  <a  class="nav-link" href="{{ url('/dashboard') }}" style="{{$style}}" ><i class="fa fa-user"></i></a>
+                @else
+                  <a  class="nav-link" href="{{ route('login') }}" style="{{$style}}" > <i class="fa fa-user"></i></a>
+                @endauth
+              </li>
+            @endif
+
+          
+          </ul>
+          <!---->
+        </div>
       </div>
-    </div>
     </nav>
     @if(Request::path() == '')
           @if($carousel->count())
@@ -244,10 +271,6 @@
                     <div class="container">
                       <div class="row align-items-center">
                         <div class="col-md-12 text-center">
-                          <!--
-                          <h1 class="display-2">ABBASTER</h1>
-                          <h2> Innovation & Solution at your fingertips</h2>
-                          -->
                         </div>
                       </div>
                     </div>

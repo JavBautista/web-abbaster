@@ -77,8 +77,8 @@
                           
 
                           <hr>
-                          <a href="{{ route('global-configurations.web_content.carousel.edit',['item_id'=>$reg->id]) }}" class="btn btn-sm btn-info"><i class="fa fa-edit"></i></a>
-                          <a href="{{ route('global-configurations.web_content.carousel.remove',['item_id'=>$reg->id]) }}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+                          <a href="{{ route('global-configurations.web_content.carousel.edit',['img_id'=>$reg->id]) }}" class="btn btn-sm btn-info"><i class="fa fa-edit"></i></a>
+                          <a href="{{ route('global-configurations.web_content.carousel.remove',['img_id'=>$reg->id]) }}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
                       </div>
                     </div>
                   </div>                
