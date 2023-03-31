@@ -38,18 +38,7 @@
           @endif
   @endif
 
-  <section>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. In totam soluta iure dolorum aliquam adipisci et corporis. Culpa praesentium similique labore laudantium molestiae quisquam doloribus totam ipsam. Non, assumenda. Vero.
 
-    <section-price-cripto></section-price-cripto><hr>
-    <p>Ex1</p>
-    <example-component></example-component>
-    <hr>
-    <p>Ex2</p>
-    <hr>
-
-
-  </section>
 
   @if($destacados->show)
     <section class="bg-azul-x">

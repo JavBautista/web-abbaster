@@ -36,13 +36,16 @@
   @php
     $abbaster_info=getAbbasterInformation();
     $style=($abbaster_info->style_color_bg!='')?"color: $abbaster_info->style_color_txt !important; background-color: $abbaster_info->style_color_bg !important;":'';
+  
+    $movil = str_replace(' ','', trim($abbaster_info->movil) );
+    $phone = str_replace(' ','', trim($abbaster_info->phone) );
   @endphp
   <div id="app">
     <nav class="navbar navbar-expand-lg navbar-light bg-light" style="{{$style}}" >
       <div class="container" style="{{$style}}" >
         
         <div class="row w-100">
-          <div class="col col-2 col-sm-auto">
+          <div class="col col-3 col-sm-auto">
             
             <a class="nav-link navbar-brand" href="/"></a>
           </div>
@@ -83,6 +86,23 @@
                
               @endif
           </div>
+          <div class="col col-2 col-sm-auto">
+            @if($movil!='')
+              @if($abbaster_info->whatsapp)
+                <div class="nav-item flex-fill">
+                  <a href="{{ 'https://wa.me/521'.$movil }}"  style="{{$style}}" class="nav-link" style="display: flex">
+                    <span class="fab fa-whatsapp fa-2x"></span>
+                  </a>
+                </div>
+              @else
+                <div class="nav-item flex-fill">
+                  <a href="{{ 'tel:+52'.$movil }}"  style="{{$style}}" class="nav-link" style="display: flex">
+                    <span class="fa fa-mobile fa-2x"></span>
+                  </a>
+                </div>
+              @endif
+            @endif
+          </div>
         </div>        
       </div>
     </nav>
@@ -94,95 +114,7 @@
         </button>
 
         <div class="collapse navbar-collapse w-100 flex-column" id="navbar-abbaster" style="{{$style}}" >
-          <ul class="navbar-nav w-100 justify-content-left" style="{{$style}}" >
-           
-            <li class="nav-item flex-fill">
-              <a href="/access/" class="nav-link" style="{{$style}}" >
-              Obtener envío gratis <i class="fa fa-thumbs-up"></i>
-              </a>
-            </li>
-
-            <li class="nav-item flex-fill">
-              <a href="/access/" style="{{$style}}" class="nav-link">Registrarse</a>
-            </li>
-
-            @php
-              $movil = str_replace(' ','', trim($abbaster_info->movil) );
-              $phone = str_replace(' ','', trim($abbaster_info->phone) );
-            @endphp
-
-            @if($movil!='')
-              @if($abbaster_info->whatsapp)
-                <li class="nav-item flex-fill">
-                  <a href="{{ 'https://wa.me/521'.$movil }}"  style="{{$style}}" class="nav-link" style="display: flex">
-                    Ayuda
-                  </a>
-                </li>
-              @else
-                <li class="nav-item flex-fill">
-                  <a href="{{ 'tel:+52'.$movil }}"  style="{{$style}}" class="nav-link" style="display: flex">
-                    Ayuda
-                  </a>
-                </li>
-              @endif
-            @endif
-
-
-            @if(trim($abbaster_info->facebook))
-              <li class="nav-item flex-fill">
-                <a href="{{ $abbaster_info->facebook}}" style="{{$style}}"  class="nav-link"><span class="fab fa-facebook fa-2x"></span></a>
-              </li>
-            @endif
-            @if(trim($abbaster_info->twitter))
-              <li class="nav-item flex-fill">
-                <a href="{{ $abbaster_info->twitter }}"  style="{{$style}}" class="nav-link"><span class="fab fa-twitter fa-2x"></span></a>
-              </li>
-            @endif
-            @if(trim($abbaster_info->instagram))
-              <li class="nav-item flex-fill">
-                <a href="{{ $abbaster_info->instagram }}"  style="{{$style}}" class="nav-link"><span class="fab fa-instagram fa-2x"></span></a>
-              </li>
-            @endif
-
-            @if(trim($abbaster_info->pinterest))
-              <li class="nav-item flex-fill">
-                <a href="{{ $abbaster_info->pinterest }}"  style="{{$style}}" class="nav-link"><span class="fab fa-pinterest fa-2x"></span></a>
-              </li>
-            @endif
-
-            @if(trim($abbaster_info->video_channel))
-              <li class="nav-item flex-fill">
-                <a href="{{ $abbaster_info->video_channel }}"  style="{{$style}}" class="nav-link"><span class="fab fa-youtube fa-2x"></span></a>
-              </li>
-            @endif
-
-            
-            @if($movil!='')
-              @if($abbaster_info->whatsapp)
-                <li class="nav-item flex-fill">
-                  <a href="{{ 'https://wa.me/521'.$movil }}"  style="{{$style}}" class="nav-link" style="display: flex">
-                    <span class="fab fa-whatsapp fa-2x"></span>
-                  </a>
-                </li>
-              @else
-                <li class="nav-item flex-fill">
-                  <a href="{{ 'tel:+52'.$movil }}"  style="{{$style}}" class="nav-link" style="display: flex">
-                    <span class="fa fa-mobile fa-2x"></span>
-                  </a>
-                </li>
-              @endif
-            @endif
-
-            @if($phone!='')
-              <li class="nav-item flex-fill">
-                <a href="{{ 'tel:+52'.$phone }}"  style="{{$style}}" class="nav-link"><span class="fa fa-phone fa-2x"></span></a>
-              </li>
-            @endif
-
-            
-
-          </ul>
-          <ul class="navbar-nav w-100 justify-content-left ">
+          <ul class="navbar-nav w-100 justify-content-left " style="{{$style}}">
             @foreach($shops as $shop)
               @if($shop->show_main_nav)
                 <li class="nav-item flex-fill dropdown">
@@ -238,6 +170,53 @@
               <li class="nav-item flex-fill">
                 @include('parts.form_select_currency')
               </li>
+
+              <li class="nav-item flex-fill">
+                <a href="/access/" class="nav-link" style="{{$style}}" >
+                Obtener envío gratis <i class="fa fa-thumbs-up"></i>
+                </a>
+              </li>
+  
+              
+  
+  
+  
+              @if(trim($abbaster_info->facebook))
+                <li class="nav-item flex-fill">
+                  <a href="{{ $abbaster_info->facebook}}" style="{{$style}}"  class="nav-link"><span class="fab fa-facebook fa-2x"></span></a>
+                </li>
+              @endif
+              @if(trim($abbaster_info->twitter))
+                <li class="nav-item flex-fill">
+                  <a href="{{ $abbaster_info->twitter }}"  style="{{$style}}" class="nav-link"><span class="fab fa-twitter fa-2x"></span></a>
+                </li>
+              @endif
+              @if(trim($abbaster_info->instagram))
+                <li class="nav-item flex-fill">
+                  <a href="{{ $abbaster_info->instagram }}"  style="{{$style}}" class="nav-link"><span class="fab fa-instagram fa-2x"></span></a>
+                </li>
+              @endif
+  
+              @if(trim($abbaster_info->pinterest))
+                <li class="nav-item flex-fill">
+                  <a href="{{ $abbaster_info->pinterest }}"  style="{{$style}}" class="nav-link"><span class="fab fa-pinterest fa-2x"></span></a>
+                </li>
+              @endif
+  
+              @if(trim($abbaster_info->video_channel))
+                <li class="nav-item flex-fill">
+                  <a href="{{ $abbaster_info->video_channel }}"  style="{{$style}}" class="nav-link"><span class="fab fa-youtube fa-2x"></span></a>
+                </li>
+              @endif
+  
+              
+              
+  
+              @if($phone!='')
+                <li class="nav-item flex-fill">
+                  <a href="{{ 'tel:+52'.$phone }}"  style="{{$style}}" class="nav-link"><span class="fa fa-phone fa-2x"></span></a>
+                </li>
+              @endif
 
             @if (Route::has('login'))
               <li class="nav-item flex-fill ml-4">

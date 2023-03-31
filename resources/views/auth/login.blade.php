@@ -35,7 +35,7 @@
                           <button type="submit" class="btn btn-primary px-4">Acceder</button>
                         </div>
                         <div class="col-6 text-right">
-                          <button type="button" class="btn btn-link px-0">Olvidaste tu password?</button>
+                          <a href="/access/" class="btn btn-link px-0">Registrarse</a>
                         </div>
                     </div>
 
@@ -45,7 +45,7 @@
             </div>
         </div>
 
-        <div class="card text-white py-5 d-md-down-none" style="width:44%; background-color: #ea3e24; ">
+        <div class="card text-white py-5 d-md-down-none" style="width:44%; background-color: #5380e0; ">
             <div class="card-body text-center">
               <div>
                 <h2>ABBASTER</h2>
