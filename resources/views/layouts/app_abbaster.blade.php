@@ -168,7 +168,7 @@
               </li>-->
 
               
-              <li class="nav-item flex-fill">
+              <li class="nav-item flex-fill mx-4">
                 @include('parts.form_select_currency')
               </li>
 
@@ -222,7 +222,7 @@
               -->
 
             @if (Route::has('login'))
-              <li class="nav-item flex-fill ml-4">
+              <li class="nav-item flex-fill">
                 @auth
                   <a  class="nav-link" href="{{ url('/dashboard') }}" style="{{$style}}" ><i class="fa fa-2x fa-user"></i></a>
                 @else
