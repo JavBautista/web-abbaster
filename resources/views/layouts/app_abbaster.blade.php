@@ -167,8 +167,17 @@
                 <a href="/como-comprar/"class="nav-link">¿Cómo comprar?</a>
               </li>-->
 
-              
-              <li class="nav-item flex-fill mx-4">
+              @if (Route::has('login'))
+              <li class="nav-item flex-fill">
+                @auth
+                  <a  class="nav-link" href="{{ url('/dashboard') }}" style="{{$style}}" ><i class="fa fa-2x fa-user"></i></a>
+                @else
+                  <a  class="nav-link" href="{{ route('login') }}" style="{{$style}}" > <i class="fa fa-2x fa-user"></i></a>
+                @endauth
+              </li>
+            @endif
+
+              <li class="nav-item flex-fill">
                 @include('parts.form_select_currency')
               </li>
 
@@ -221,15 +230,7 @@
               @endif
               -->
 
-            @if (Route::has('login'))
-              <li class="nav-item flex-fill">
-                @auth
-                  <a  class="nav-link" href="{{ url('/dashboard') }}" style="{{$style}}" ><i class="fa fa-2x fa-user"></i></a>
-                @else
-                  <a  class="nav-link" href="{{ route('login') }}" style="{{$style}}" > <i class="fa fa-2x fa-user"></i></a>
-                @endauth
-              </li>
-            @endif
+            
 
           
           </ul>
