@@ -171,11 +171,11 @@
                 @include('parts.form_select_currency')
               </li>
 
-              <li class="nav-item flex-fill">
+              <!--<li class="nav-item flex-fill">
                 <a href="/access/" class="nav-link" style="{{$style}}" >
                 Obtener envío gratis <i class="fa fa-thumbs-up"></i>
                 </a>
-              </li>
+              </li>-->
   
               
   
@@ -212,11 +212,13 @@
               
               
   
-              @if($phone!='')
+              <!---
+                @if($phone!='')
                 <li class="nav-item flex-fill">
                   <a href="{{ 'tel:+52'.$phone }}"  style="{{$style}}" class="nav-link"><span class="fa fa-phone fa-2x"></span></a>
                 </li>
               @endif
+              -->
 
             @if (Route::has('login'))
               <li class="nav-item flex-fill ml-4">
