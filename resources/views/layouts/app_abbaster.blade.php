@@ -45,7 +45,7 @@
       <div class="container" style="{{$style}}" >
         
         <div class="row w-100">
-          <div class="col col-3 col-sm-auto">
+          <div class="col col-1 col-sm-auto">
             
             <a class="nav-link navbar-brand" href="/"></a>
           </div>
@@ -59,7 +59,7 @@
               </div>
             </form>
           </div>
-          <div class="col col-2 col-sm-auto">
+          <div class="col col-1 col-sm-auto">
             @php
                 $cart=existeShoppingCart();
                 $count_cart= $cart->count();
@@ -86,7 +86,7 @@
                
               @endif
           </div>
-          <div class="col col-2 col-sm-auto">
+          <div class="col col-1 col-sm-auto">
             @if($movil!='')
               @if($abbaster_info->whatsapp)
                 <div class="nav-item flex-fill">
@@ -223,9 +223,9 @@
             @if (Route::has('login'))
               <li class="nav-item flex-fill ml-4">
                 @auth
-                  <a  class="nav-link" href="{{ url('/dashboard') }}" style="{{$style}}" ><i class="fa fa-user"></i></a>
+                  <a  class="nav-link" href="{{ url('/dashboard') }}" style="{{$style}}" ><i class="fa fa-x2 fa-user"></i></a>
                 @else
-                  <a  class="nav-link" href="{{ route('login') }}" style="{{$style}}" > <i class="fa fa-user"></i></a>
+                  <a  class="nav-link" href="{{ route('login') }}" style="{{$style}}" > <i class="fa fa-x2 fa-user"></i></a>
                 @endauth
               </li>
             @endif
