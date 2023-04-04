@@ -1,6 +1,6 @@
 @php
 	if($product->slug)
-		$url_route = route('shops.store.product.slug',['shop_slug'=>$product->category->shop->slug,'produc_slug'=>$product->slug]);
+		$url_route = route('shops.store.product.slug',['shop_slug'=>$product->category->shop->slug,'product_slug'=>$product->slug]);
 	else
 		$url_route = route('shops.store.product.id', ['shop_slug'=>$product->category->shop->slug,'product_id'=>$product->id]);
 @endphp

@@ -32,7 +32,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-light navbar-shops">
             <div class="container">
                 <div class="navbar-toggler-right">
-                    <a class="navbar-brand" href="{{ route('shops.index',['slug'=>$shop->slug]) }}">
+                    <a class="navbar-brand" href="{{ route('shops.index',['shop_slug'=>$shop->slug]) }}">
                         <img src=" {{ $shop->getLogoStore($shop->logo) }} " height="60" alt="{{$shop->name}}" loading="lazy">
                     </a>
                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-shops" aria-controls="navbar-shops" aria-expanded="false" aria-label="Toggle navigation">
@@ -108,16 +108,16 @@
                         @include('parts.nav-item-tiendas',['tda'=>'roho'])
 
                          <li class="nav-item">
-                             <a href="{{ route('shops.store', ['slug'=>$shop->slug]) }}" class="nav-link">Store</a>
+                             <a href="{{ route('shops.store', ['shop_slug'=>$shop->slug]) }}" class="nav-link">Store</a>
                          </li>
                          <li class="nav-item">
-                             <a href="{{ route('shops.about', ['slug'=>$shop->slug]) }}" class="nav-link">Acerca de nosotros</a>
+                             <a href="{{ route('shops.about', ['shop_slug'=>$shop->slug]) }}" class="nav-link">Acerca de nosotros</a>
                          </li>
                          <li class="nav-item">
-                             <a href="{{ route('shops.services', ['slug'=>$shop->slug]) }}" class="nav-link">Servicios</a>
+                             <a href="{{ route('shops.services', ['shop_slug'=>$shop->slug]) }}" class="nav-link">Servicios</a>
                          </li>
                          <li class="nav-item">
-                             <a href="{{ route('shops.downloads', ['slug'=>$shop->slug]) }}" class="nav-link">Descargas</a>
+                             <a href="{{ route('shops.downloads', ['shop_slug'=>$shop->slug]) }}" class="nav-link">Descargas</a>
                          </li>
 
                          <li class="nav-item">
