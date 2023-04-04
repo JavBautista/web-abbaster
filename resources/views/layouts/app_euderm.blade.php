@@ -144,7 +144,7 @@
         <!-- FOOTER -->
       <footer class="container">
         <p class="float-right"><a href="#">Back to top</a></p>
-        <p>&copy; 2021 Euderm. &middot; <a href="/politica-de-privacidad/">Privacidad</a> &middot; <a href="/terminos-y-condiciones/">Terminos</a>  &middot; <a href="/">Abbaster.com</a></p>
+        <p>&copy; 2021 - 2023 Euderm. &middot; <a href="/politica-de-privacidad/">Privacidad</a> &middot; <a href="/terminos-y-condiciones/">Terminos</a>  &middot; <a href="/">Abbaster.com</a></p>
       </footer>
       <div id="WAButton"></div>
     </div>

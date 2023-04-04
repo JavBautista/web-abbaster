@@ -150,7 +150,7 @@
     </div><!--.app-body-->
 </div><!--div#app-->
     <footer class="app-footer">
-        <span>Abbaster &copy; 2019-2020</span>
+        <span>Abbaster &copy; 2019-2023</span>
     </footer>
 
     <script src="js/app.js"></script>

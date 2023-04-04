@@ -283,7 +283,7 @@
     </main>
     <!-- Footer -->
     <footer id="footer" class="footer-abbaster pb-4 pt-4" style="{{$style}}">
-      <p>&copy; 2019-2022 Abbaster &middot;
+      <p>&copy; 2019-2023 Abbaster &middot;
         <a style="{{$style}}" href="/politica-de-privacidad/">Privacidad</a> &middot;
         <a style="{{$style}}" href="/terminos-y-condiciones/">Terminos</a> &middot; </p>
     </footer>

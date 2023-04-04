@@ -1,11 +1,16 @@
 @extends('layouts.app_login')
 @section('login')
+@php
+    $abbaster_info=getAbbasterInformation();
+    $style=($abbaster_info->style_color_bg!='')?"color: $abbaster_info->style_color_txt !important; background-color: $abbaster_info->style_color_bg !important;":'';
+@endphp
 <div class="row justify-content-center">
   <div class="col-md-8">
     <div class="card-group mb-0">
         <div class="card p-4">
             <div class="card-body">
                 <h1>Acceder</h1>
+
                 <!--<p class="text-muted">Control de acceso al sistema</p>
 -->
                 <form method="POST" action="{{ route('login') }}">
@@ -45,7 +50,7 @@
             </div>
         </div>
 
-        <div class="card text-white py-5 d-md-down-none" style="width:44%; background-color: #5380e0; ">
+        <div class="card text-white py-5 d-md-down-none" style="{{$style}}">
             <div class="card-body text-center">
               <div>
                 <h2>ABBASTER</h2>
