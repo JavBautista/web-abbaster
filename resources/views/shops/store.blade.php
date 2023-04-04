@@ -15,7 +15,7 @@
                     </div>
                     <div class="card-footer bg-transparent border-light">
                         @php
-                         $url_route= $category->slug?route('shops.store.category.slug',['shop_slug'=>$shop->slug,'category_id'=>$category->slug]):route('shops.store.category.id',['shop_slug'=>$shop->slug,'category_slug'=>$category->id]);
+                         $url_route= $category->slug?route('shops.store.category.slug',['shop_slug'=>$shop->slug,'category_slug'=>$category->slug]):route('shops.store.category.id',['shop_slug'=>$shop->slug,'category_id'=>$category->id]);
                         @endphp
                         <a href="{{ $url_route }}" class="btn btn-sm btn-block btn-euderm stretched-link">Vamos <i class="fa fa-arrow-alt-circle-right"></i></a>
                     </div>
