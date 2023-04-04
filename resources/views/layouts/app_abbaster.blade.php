@@ -144,13 +144,13 @@
                           }
 
                         @endphp
-                        <a style="{{$style}}"  class="dropdown-item" href="{{$link}}">{{$category->name}}</a>
+                        <a  class="dropdown-item" href="{{$link}}">{{$category->name}}</a>
                         @if($limit==10)
                           @break;
                         @endif
                       @endif
                     @endforeach
-                    <a style="{{$style}}"  class="dropdown-item" href="{{$shop->dynamic?'/shop/'.$shop->slug.'/store':'/'.$shop->slug.'/store'}}">Ver mas...</a>
+                    <a class="dropdown-item" href="{{$shop->dynamic?'/shop/'.$shop->slug.'/store':'/'.$shop->slug.'/store'}}">Ver mas...</a>
                   </div>
                 </li>
               @endif
