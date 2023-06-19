@@ -20,7 +20,9 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/coreui.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/mdb.min.css') }}" rel="stylesheet">
+    <!--
+        <link href="{ { asset('css/mdb.min.css') }}" rel="stylesheet"> 
+    -->
     <link href="{{ asset('css/addons-pro/chat.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style_test.css') }}" rel="stylesheet">
 
@@ -181,6 +183,9 @@
                     <li class="nav-item nav-dropdown">
                         <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa fa-desktop"></i> Contenido Web</a>
                         <ul class="nav-dropdown-items">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{route('admin.projects')}}">Proyectos </a>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{route('global-configurations.web_content.nav_acceso_tiendas')}}">Navegador: Links a tiendas </a>
                             </li>

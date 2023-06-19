@@ -714,6 +714,24 @@ Route::group(['middleware' => 'auth'], function () {
 
 	Route::put('/products-cost-usd/update', 'GlobalConfigurationsController@updateProductsCostUSD');
 
+	#---------ADMIN PROJECTS
+	Route::get('/dashboard/projects', 'ProjectController@index' )->name('admin.projects');
+	Route::get('/dashboard/projects/get','ProjectController@getProjects' );
+	Route::post('/admin/projects/store','ProjectController@store' );
+	Route::put('/admin/projects/update','ProjectController@update' );
+	Route::put('/admin/projects/active','ProjectController@active');
+	Route::put('/admin/projects/deactive','ProjectController@deactive');
+	Route::put('/admin/projects/show-home','ProjectController@showHome');
+	Route::put('/admin/projects/hide-home','ProjectController@hideHome');
+	Route::put('/admin/projects/delete','ProjectController@delete');
+	Route::post('/admin/projects/update-main-image','ProjectController@updateMainImage');
+	Route::post('/admin/projects/upload-other-image','ProjectController@uploadOtherImage');
+	Route::post('/admin/projects/store-video','ProjectController@storeVideo');
+	Route::put('/admin/projects/delete-video','ProjectController@deleteVideo');
+	Route::get('/admin/projects/video/get-url/{project_id}', 'ProjectController@getUrlVideo' );
+
+	Route::put('/admin/projects/delete-other-image','ProjectController@deleteOtherImage');
+
 	#---------Shops
 	Route::get('/dashboard/global-configurations/shops', 'GlobalConfigurationsController@shopsIndex' )->name('global-configurations.shops');
 

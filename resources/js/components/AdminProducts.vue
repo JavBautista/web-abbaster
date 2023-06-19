@@ -199,7 +199,7 @@
                       Acciones
                     </button>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="javascript:void(0)"@click="abrirModal('product','actualizar_code_fact', product)">Actualizar código facturación</a>
+                        <a class="dropdown-item" href="javascript:void(0)" @click="abrirModal('product','actualizar_code_fact', product)">Actualizar código facturación</a>
                         <a class="dropdown-item" href="javascript:void(0)" @click="abrirModal('product','actualizar_categoria', product)">Actualizar Categoría</a>
                         <a class="dropdown-item" href="javascript:void(0)" @click="abrirModal('product','actualizar_qty_sold', product)">
                           <i class="fa fa-sort-numeric-up"></i> Actualizar Piezas vendidas

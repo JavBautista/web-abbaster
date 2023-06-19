@@ -150,7 +150,7 @@
                         @endif
                       @endif
                     @endforeach
-                    <a class="dropdown-item" href="{{$shop->dynamic?'/shop/'.$shop->slug.'/store':'/'.$shop->slug.'/store'}}">Ver mas...</a>
+                    <a   class="dropdown-item" href="{{$shop->dynamic?'/shop/'.$shop->slug.'/store':'/'.$shop->slug.'/store'}}">Ver mas...</a>
                   </div>
                 </li>
               @endif
