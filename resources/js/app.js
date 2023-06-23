@@ -50,6 +50,7 @@ Vue.component('product-comentarios', require('./components/ProductComentarios.vu
 Vue.component('questions-products', require('./components/QuestionsProducts.vue'));
 Vue.component('section-price-cripto', require('./components/SectionPriceCripto.vue'));
 Vue.component('shopping-cart', require('./components/ShoppingCart.vue'));
+Vue.component('testvideo-component', require('./components/TestVideoComponent.vue'));
 Vue.component('warehouse-component', require('./components/Warehouse.vue'));
 
 // const files = require.context('./', true, /\.vue$/i)

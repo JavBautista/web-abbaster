@@ -730,6 +730,8 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('/admin/projects/delete-video','ProjectController@deleteVideo');
 	Route::get('/admin/projects/video/get-url/{project_id}', 'ProjectController@getUrlVideo' );
 
+	Route::post('/upload-testvideo', 'ProjectController@uploadTestVideo');
+
 	Route::put('/admin/projects/delete-other-image','ProjectController@deleteOtherImage');
 
 	#---------Shops

@@ -200,4 +200,20 @@ class ProjectController extends Controller
             $image->delete();
         }
     }
+
+
+    public function uploadTestVideo(Request $request){
+        if ($request->hasFile('video')) {
+            $file = $request->file('video');
+            $path = $file->store('video_test','public');
+
+//                    $request->file('video')->store($folder, 'public');
+            // Puedes almacenar el $path en tu base de datos si es necesario
+            // ...
+
+            return response()->json(['message' => 'Video uploaded successfully.']);
+        }
+
+        return response()->json(['message' => 'No video file received.'], 400);
+    }
 }
