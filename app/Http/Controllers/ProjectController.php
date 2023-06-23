@@ -153,9 +153,9 @@ class ProjectController extends Controller
     }
 
     public function storeVideo(Request $request){
-        $request->validate([
+        /*$request->validate([
             'video' => 'required|file|mimetypes:video/mp4,video/x-m4v,video/*',
-        ]);
+        ]);*/
 
         $project_id=$request->project_id;
         $folder = "proyectos";
