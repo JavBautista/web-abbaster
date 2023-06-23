@@ -157,6 +157,10 @@ class ProjectController extends Controller
         ]);*/
     public function storeVideo(Request $request){
 
+        $videoFile = $request->file('video');
+
+        return $videoFile;
+
         /*$project_id=$request->project_id;
         $folder = "proyectos";
 
@@ -165,13 +169,13 @@ class ProjectController extends Controller
         $project->url_video = $project_path;
         $project->save();*/
 
-        $project_id = $request->project_id;
+        /*$project_id = $request->project_id;
         $folder = "video_test";
 
         $project = Project::findOrFail($project_id);
         $project_path = $request->file('video')->store($folder, 'public');
         $project->url_video = $project_path;
-        $project->save();
+        $project->save();*/
     }
 
     public function deleteVideo(Request $request){

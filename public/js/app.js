@@ -94626,20 +94626,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             console.log(this.other_image);
         },
         loadProjects: function loadProjects(page) {
-            console.log('load projects');
+
             var me = this;
             var url = '/dashboard/projects/get?page=' + page;
-            console.log('url ' + url);
+
             // Make a request for a user with a given ID
             axios.get(url).then(function (response) {
-                console.log('response: ');
-                console.log(response);
+
                 var respuesta = response.data;
                 me.arrayProject = respuesta.projects.data;
                 me.pagination = respuesta.pagination;
-                console.log('---------------');
-                console.log(me.arrayProject);
-                console.log('---------------');
             }).catch(function (error) {
                 // handle error
                 console.log(error);
@@ -95036,6 +95032,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     'Content-Type': 'multipart/form-data'
                 }
             }).then(function (response) {
+                console.log('response: ');
+                console.log(response);
                 me.video = null;
                 Swal.close();
                 me.cerrarModal();

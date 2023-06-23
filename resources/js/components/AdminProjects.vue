@@ -344,20 +344,17 @@
         },
 
         loadProjects(page){
-            console.log('load projects')
+
             let me=this;
           var url = `/dashboard/projects/get?page=${page}`;
-            console.log('url '+url)
+
           // Make a request for a user with a given ID
           axios.get(url).then(function (response) {
-                console.log('response: ')  
-                console.log(response)  
+
             var respuesta  = response.data;
               me.arrayProject = respuesta.projects.data;
               me.pagination = respuesta.pagination;
-              console.log('---------------');
-              console.log(me.arrayProject);
-              console.log('---------------');
+
             })
             .catch(function (error) {
               // handle error
@@ -781,6 +778,8 @@
                   }
                 })
             .then(function (response){
+                console.log('response: ');
+                console.log(response);
                 me.video = null;
                 Swal.close();
                 me.cerrarModal();
