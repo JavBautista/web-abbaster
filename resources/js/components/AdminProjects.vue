@@ -704,7 +704,11 @@
                     allowOutsideClick: false,
                 });
 
-                axios.post('/admin/projects/upload-other-image',formData)
+                axios.post('/admin/projects/upload-other-image',formData,{
+                  headers: {
+                    'Content-Type': 'multipart/form-data'
+                  }
+                })
                 .then(function (response){
                     console.log(response);
                     Swal.close();

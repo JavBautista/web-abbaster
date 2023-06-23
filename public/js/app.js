@@ -94961,7 +94961,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 allowOutsideClick: false
             });
 
-            axios.post('/admin/projects/upload-other-image', formData).then(function (response) {
+            axios.post('/admin/projects/upload-other-image', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            }).then(function (response) {
                 console.log(response);
                 Swal.close();
                 me.cerrarModal();

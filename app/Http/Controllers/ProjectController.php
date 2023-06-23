@@ -161,7 +161,7 @@ class ProjectController extends Controller
         $folder = "proyectos";
 
         $project = Project::findOrFail($project_id);
-        $project_path = Storage::disk('s3')->put($folder, $request->video, 'public');
+        $project_path = Storage::disk('s3')->put($folder, $request->file('video'), 'public');
         $project->url_video = $project_path;
         $project->save();
     }
