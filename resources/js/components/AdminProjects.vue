@@ -704,11 +704,7 @@
                     allowOutsideClick: false,
                 });
 
-                axios.post('/admin/projects/upload-other-image',formData,{
-                  headers: {
-                    'Content-Type': 'multipart/form-data'
-                  }
-                })
+                axios.post('/admin/projects/upload-other-image',formData)
                 .then(function (response){
                     console.log(response);
                     Swal.close();
@@ -777,7 +773,13 @@
                 allowOutsideClick: false,
             });
 
-            axios.post('/admin/projects/store-video',formData)
+            console.log('Subir video');
+
+            axios.post('/admin/projects/store-video',formData,{
+                  headers: {
+                    'Content-Type': 'multipart/form-data'
+                  }
+                })
             .then(function (response){
                 me.video = null;
                 Swal.close();

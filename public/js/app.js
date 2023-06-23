@@ -94961,11 +94961,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 allowOutsideClick: false
             });
 
-            axios.post('/admin/projects/upload-other-image', formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                }
-            }).then(function (response) {
+            axios.post('/admin/projects/upload-other-image', formData).then(function (response) {
                 console.log(response);
                 Swal.close();
                 me.cerrarModal();
@@ -95033,7 +95029,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 allowOutsideClick: false
             });
 
-            axios.post('/admin/projects/store-video', formData).then(function (response) {
+            console.log('Subir video');
+
+            axios.post('/admin/projects/store-video', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            }).then(function (response) {
                 me.video = null;
                 Swal.close();
                 me.cerrarModal();
