@@ -157,7 +157,7 @@ class ProjectController extends Controller
         ]);*/
     public function storeVideo(Request $request){
 
-        $videoFile = $request->file('video');
+        $videoFile = $request->video;
 
         return $videoFile;
 
