@@ -38,13 +38,6 @@
           @endif
   @endif
 
-  <section>
-    <hr>
-      <example-component></example-component>
-    <hr>
-    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora deserunt deleniti perferendis, non reiciendis architecto unde eius minima natus culpa. Voluptatibus velit recusandae similique soluta illo consequuntur minus blanditiis vero.
-  </section>
-
   @if($destacados->show)
     <section class="bg-azul-x">
       @if(count($products_featured))
