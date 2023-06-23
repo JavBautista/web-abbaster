@@ -95046,6 +95046,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     icon: 'success'
                 });
             }).catch(function (error) {
+                console.log('Mi Error: ');
                 console.log(error);
                 Swal.close();
                 Swal.fire({

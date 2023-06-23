@@ -193,7 +193,7 @@
                             <div class="form-group">
                                 <label>Video</label>
                                 <input class="form-control"  type="file" name="video" @change="uploadVideo">
-                              </div>
+                            </div>
                         </div>
                         <!--./tipoAcion==5: View Video-->
                         <div v-else-if="tipoAccion==5">
@@ -791,6 +791,7 @@
                     icon: 'success',
                 });
             }).catch(function (error){
+                console.log('Mi Error: ');
                 console.log(error);
                 Swal.close();
                 Swal.fire({
