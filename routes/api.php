@@ -21,6 +21,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 */
 
+Route::get('products/feautered','\App\Http\Controllers\Api\ProductsController@getProductsFeatured');
+
 Route::group([
     'prefix' => 'auth'
 ], function () {

@@ -136,7 +136,30 @@
         @endif
     </section>
   @endif
+  <section>
+   
+      <div class="card mb-3" style="{{$style}}">
+        <div class="row no-gutters">
+          
+          <div class="col-md-8">
+            <div class="card-body">
+              <h2 class="text-center">PROYECTOS</h2>
+              <p class="mt-4">Descubre nuestros innovadores proyectos de desarrollo y automatización tecnológica en <strong>Abbaster.com</strong> </p>
+              <p>Diseñamos soluciones personalizadas para particulares, empresas e industrias. Desde implementaciones domésticas hasta sistemas complejos a nivel industrial, nuestros proyectos abarcan una amplia gama de necesidades. </p>
+              <p>Explora nuestras propuestas vanguardistas y encuentra la solución perfecta para optimizar tus procesos. ¡Haz clic aquí para conocer más detalles sobre cada proyecto!
+              </p>
+              <a href="/proyectos/" class="btn btn-primary float-right ">MAS INFORMACIÓN <i class="fa fa-arrow-circle-right"></i> </a>
+            </div>
+          
+          </div>
+          <div class="col-md-4">
+            <img src="{{ asset('assets/proyectos.png') }}" class="card-img" alt="...">
+          </div>
+        </div>
+      </div>
 
+
+  </section>
   @if($acceso_tiendas->show)
     <hr>
     <section>

@@ -8,6 +8,7 @@ use App\Http\Requests\SearchRequest;
 use App\Shop;
 use App\Product;
 use App\Purchase;
+use App\Project;
 use App\WebSection;
 use App\WebContentTestimonios;
 use App\WebContentDestacados;
@@ -121,6 +122,12 @@ class AbbasterPagesController extends Controller
     public function crece(){
         $shops   = Shop::where('status',0)->get();
         return view('crece',['shops'=>$shops]);
+    }
+    public function proyectos(){
+        $shops   = Shop::where('status',0)->get();
+        $projects = Project::where('active',1)->get();
+        
+        return view('proyectos',['shops'=>$shops, 'projects'=>$projects]);
     }
 
     public function comoComprar(){
