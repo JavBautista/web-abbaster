@@ -41,6 +41,7 @@ Route::get('/como-comprar/', 'AbbasterPagesController@comoComprar');
 Route::get('/crece/', 'AbbasterPagesController@crece');
 
 Route::get('/proyectos/', 'AbbasterPagesController@proyectos');
+Route::get('/proyectos/detalle/{project_id}', 'AbbasterPagesController@proyecto')->name('project.detail');
 
 Route::get('/ecommerce/', 'AbbasterPagesController@ecommerce');
 Route::get('/terminos-y-condiciones/', 'AbbasterPagesController@terminosyCondiciones');

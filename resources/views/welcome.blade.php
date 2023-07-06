@@ -148,7 +148,9 @@
               <p>Diseñamos soluciones personalizadas para particulares, empresas e industrias. Desde implementaciones domésticas hasta sistemas complejos a nivel industrial, nuestros proyectos abarcan una amplia gama de necesidades. </p>
               <p>Explora nuestras propuestas vanguardistas y encuentra la solución perfecta para optimizar tus procesos. ¡Haz clic aquí para conocer más detalles sobre cada proyecto!
               </p>
-              <a href="/proyectos/" class="btn btn-primary float-right ">MAS INFORMACIÓN <i class="fa fa-arrow-circle-right"></i> </a>
+              <p class="align-center">
+                <a href="/proyectos/" class="btn btn-primary float-right ">MAS INFORMACIÓN <i class="fa fa-arrow-circle-right"></i> </a>
+              </p>
             </div>
           
           </div>

@@ -9,7 +9,7 @@
                        <template>
                             <div>
                                 <input type="file" ref="fileInput" @change="uploadVideo">
-                                <button @click="submit">Subir Video</button>
+                                <button @click="submit">Subir Archivo</button>
                             </div>
                         </template>
                     </div>

@@ -23,6 +23,9 @@
 	                	<p class="card-title"><strong>{{ $project->title }}</strong></p>
                         <p>{{ $project->description }}</p>	                  		                	
 	                </div>
+                  <div class="card-footer">
+                    <a href="{{ route('project.detail',['project_id'=>$project->id]); }}  " class="btn btn-primary float-right ">MAS INFORMACIÓN <i class="fa fa-arrow-circle-right"></i> </a>
+                  </div>
 	              </div>
 	            </div>
             @empty

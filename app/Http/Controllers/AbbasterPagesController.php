@@ -129,6 +129,12 @@ class AbbasterPagesController extends Controller
         
         return view('proyectos',['shops'=>$shops, 'projects'=>$projects]);
     }
+    
+    public function proyecto($project_id){ 
+        $shops   = Shop::where('status',0)->get();
+        $project = Project::findOrFail($project_id);        
+        return view('proyecto_detalle',['shops'=>$shops, 'project'=>$project]);
+    }
 
     public function comoComprar(){
         $shops   = Shop::where('status',0)->get();

@@ -211,9 +211,9 @@ class ProjectController extends Controller
             // Puedes almacenar el $path en tu base de datos si es necesario
             // ...
 
-            return response()->json(['message' => 'Video uploaded successfully.']);
+            return response()->json(['message' => 'RESPONSE:  Video uploaded successfully.']);
         }
 
-        return response()->json(['message' => 'No video file received.'], 400);
+        return response()->json(['message' => 'RESPONSE: No video file received.'], 400);
     }
 }

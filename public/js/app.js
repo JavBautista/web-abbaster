@@ -121967,7 +121967,7 @@ var render = function() {
                   }),
                   _vm._v(" "),
                   _c("button", { on: { click: _vm.submit } }, [
-                    _vm._v("Subir Video")
+                    _vm._v("Subir Archivo")
                   ])
                 ])
               ]
