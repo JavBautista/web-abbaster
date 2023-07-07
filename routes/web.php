@@ -733,13 +733,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('/admin/projects/store-video','ProjectController@storeVideo');
 	Route::put('/admin/projects/delete-video','ProjectController@deleteVideo');
 	Route::get('/admin/projects/video/get-url/{project_id}', 'ProjectController@getUrlVideo' );
-
-
 	Route::put('/admin/projects/delete-other-image','ProjectController@deleteOtherImage');
-
-	Route::get('/upload-testvideo', 'ProjectController@uploadTestVideo')->name('upload-testvideo');
-
-	Route::post('/upload-video', 'ProjectController@uploadVideo')->name('upload-video');
 
 	#---------Shops
 	Route::get('/dashboard/global-configurations/shops', 'GlobalConfigurationsController@shopsIndex' )->name('global-configurations.shops');

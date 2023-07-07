@@ -157,17 +157,16 @@ class ProjectController extends Controller
         ]);*/
     public function storeVideo(Request $request){
 
-        $videoFile = $request->video;
+        //$videoFile = $request->video;
 
-        return $videoFile;
 
-        /*$project_id=$request->project_id;
+        $project_id=$request->project_id;
         $folder = "proyectos";
 
         $project = Project::findOrFail($project_id);
         $project_path = Storage::disk('s3')->put($folder, $request->file('video'), 'public');
         $project->url_video = $project_path;
-        $project->save();*/
+        $project->save();
 
         /*$project_id = $request->project_id;
         $folder = "video_test";
@@ -199,15 +198,5 @@ class ProjectController extends Controller
             Storage::disk('public')->delete($file);
             $image->delete();
         }
-    }
-
-
-    public function uploadTestVideo(Request $request){
-        return view('admin.projects.upload_video');
-    }
-
-    public function uploadVideo(Request $request){
-         dd($request->file('video'));
-        //dd($request);
     }
 }
