@@ -203,17 +203,11 @@ class ProjectController extends Controller
 
 
     public function uploadTestVideo(Request $request){
-        if ($request->hasFile('video')) {
-            $file = $request->file('video');
-            $path = $file->store('video_test','public');
+        return view('admin.projects.upload_video');
+    }
 
-//                    $request->file('video')->store($folder, 'public');
-            // Puedes almacenar el $path en tu base de datos si es necesario
-            // ...
-
-            return response()->json(['message' => 'RESPONSE:  Video uploaded successfully.']);
-        }
-
-        return response()->json(['message' => 'RESPONSE: No video file received.'], 400);
+    public function uploadVideo(Request $request){
+         dd($request->file('video'));
+        //dd($request);
     }
 }

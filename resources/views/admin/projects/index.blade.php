@@ -1,8 +1,10 @@
 @extends('layouts.app_main_dashboard')
 @section('content')
 <!--@ include('admin.global_configurations.breadcrumb',['item'=>'dollar_price'])-->
-  <testvideo-component></testvideo-component>
+  <!--<testvideo-component></testvideo-component>
   <hr>
+  <admin-projects></admin-projects>-->
 
-  <admin-projects></admin-projects>
+  <a href="{{ route('upload-testvideo') }}">UPLOAD</a>
+
 @endsection
