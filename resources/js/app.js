@@ -26,6 +26,7 @@ Vue.component('admin-projects', require('./components/AdminProjects.vue'));
 Vue.component('admin-po-products', require('./components/AdminPurchaseOrderProducts.vue'));
 Vue.component('admin-po-products-surtir', require('./components/AdminPurchaseOrderProductsSurtir.vue'));
 Vue.component('admin-sale-chat', require('./components/AdminSaleChat.vue'));
+Vue.component('admin-services', require('./components/AdminServices.vue'));
 Vue.component('admin-testimonios', require('./components/AdminTestimonios.vue'));
 Vue.component('admin-users', require('./components/AdminUsers.vue'));
 Vue.component('operation-recepcion', require('./components/CedisOperationRecepcion.vue'));

@@ -30,8 +30,13 @@
         	<li class="breadcrumb-item"><a href="/dashboard">Index</a></li>
 	    	<li class="breadcrumb-item active" aria-current="page">Store</li>
         	@break
-
-    <!-- ------------------------------------------------Proveedores------------------------------------------------------------ -->
+    <!-- ------------------------------------------------Services------------------------------------------------------------ -->
+    @case('store.services.index')
+          <li class="breadcrumb-item"><a href="/dashboard">Index</a></li>
+          <li class="breadcrumb-item"><a href="{{ route('store.index', [ 'id'=>$shop->id] ) }}">{{ $shop->name }}</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Servicios</li>
+          @break
+    <!-- ------------------------------------------------Courses------------------------------------------------------------ -->
     @case('store.courses.index')
         	<li class="breadcrumb-item"><a href="/dashboard">Index</a></li>
   	    	<li class="breadcrumb-item"><a href="{{ route('store.index', [ 'id'=>$shop->id] ) }}">{{ $shop->name }}</a></li>

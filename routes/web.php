@@ -480,6 +480,17 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('/categories/order-by/update', 'CategoriesController@updateOrderBy')->middleware('auth');
 
 	#----------------------------------------------------------------------------------------------------------
+	#LINKS SERVICES
+	Route::get('/dashboard/store/{shop_id}/services', 'ServiceController@index' )->name('dashboard.store.services.index');
+	//BEGIN LINKS COMPONENT VUE
+	Route::get('/admin/shop/services-get/{shop_id}', 'ServiceController@getShopServices' );
+	Route::post('/admin/service/store', 'ServiceController@store');
+	Route::put('/admin/service/update', 'ServiceController@update');
+	Route::put('/admin/service/active', 'ServiceController@active');
+	Route::put('/admin/service/deactive', 'ServiceController@deactive');
+	Route::put('/admin/service/delete', 'ServiceController@delete');
+
+	#----------------------------------------------------------------------------------------------------------
 	#LINKS CURSOS
 	Route::get('/dashboard/store/{shop_id}/courses', 'CourseController@index' )->name('dashboard.store.courses.index');
 

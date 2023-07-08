@@ -146,6 +146,10 @@
                     </li>
 
                     <li class="nav-item">
+                        <a href="{{ route('dashboard.store.services.index',['shop_id'=> $shop->id]) }}" class="nav-link"><i class="fa fa-gear "></i> Servicios</a>
+                    </li>
+
+                    <li class="nav-item">
                         <a href="{{ route('dashboard.store.courses.index',['shop_id'=> $shop->id]) }}" class="nav-link"><i class="fa fa-play"></i> Cursos</a>
                     </li>
 
