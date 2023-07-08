@@ -735,6 +735,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/admin/projects/video/get-url/{project_id}', 'ProjectController@getUrlVideo' );
 	Route::put('/admin/projects/delete-other-image','ProjectController@deleteOtherImage');
 
+
 	#---------Shops
 	Route::get('/dashboard/global-configurations/shops', 'GlobalConfigurationsController@shopsIndex' )->name('global-configurations.shops');
 

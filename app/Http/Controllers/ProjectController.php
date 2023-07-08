@@ -68,7 +68,7 @@ class ProjectController extends Controller
           ]);
 
         $slug = $this->generateNewSlugProduct($request->title);
-        
+
         $project = new Project;
         $project->active = $request->active;
         $project->show_home = $request->show_home;

@@ -16,8 +16,8 @@
                         <tr>
                             <th>Opciones</th>
                             <th>Estatus</th>
-                            <th>Titulo</th>
-                            <th>Imagenes</th>
+                            <th>Título</th>
+                            <th>Imágenes</th>
                             <th>Video</th>
                             <th>Creación</th>
                         </tr>
