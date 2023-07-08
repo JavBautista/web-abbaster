@@ -40,8 +40,8 @@ Route::get('/search', 'AbbasterPagesController@search')->name('ababster.search')
 Route::get('/como-comprar/', 'AbbasterPagesController@comoComprar');
 Route::get('/crece/', 'AbbasterPagesController@crece');
 
-Route::get('/proyectos/', 'AbbasterPagesController@proyectos');
-Route::get('/proyectos/detalle/{project_id}', 'AbbasterPagesController@proyecto')->name('project.detail');
+Route::get('/proyectos/', 'AbbasterPagesController@proyectos')->name('projects');
+Route::get('/proyectos/detalle/{slug}', 'AbbasterPagesController@proyecto')->name('project.detail');
 
 Route::get('/ecommerce/', 'AbbasterPagesController@ecommerce');
 Route::get('/terminos-y-condiciones/', 'AbbasterPagesController@terminosyCondiciones');

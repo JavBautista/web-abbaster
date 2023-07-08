@@ -130,10 +130,15 @@ class AbbasterPagesController extends Controller
         return view('proyectos',['shops'=>$shops, 'projects'=>$projects]);
     }
     
-    public function proyecto($project_id){ 
+    public function proyecto($slug){
         $shops   = Shop::where('status',0)->get();
-        $project = Project::findOrFail($project_id);        
-        return view('proyecto_detalle',['shops'=>$shops, 'project'=>$project]);
+        $project = Project::where('slug',$slug)->first();
+        //dd($project);
+        $url_video=null;
+        if($project->url_video){
+            $url_video = Storage::disk('s3')->url($project->url_video);
+        }
+        return view('proyecto_detalle',['shops'=>$shops, 'project'=>$project,'url_video'=>$url_video]);
     }
 
     public function comoComprar(){

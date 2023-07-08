@@ -14,25 +14,25 @@
     </div>
     <div class="row justify-content-center">
         <div class="col-md-10">
-        	<div class="row">
-            @forelse($projects as $project)
-				<div class="col-lg-3 col-md-6">
-	              <div class="card mb-4 shadow-sm">
-	                <img class="card-img-top" src="{{ $project->image }}" width="100px" alt="Card image cap">
-	                <div class="card-body">
-	                	<p class="card-title"><strong>{{ $project->title }}</strong></p>
-                        <p>{{ $project->description }}</p>	                  		                	
-	                </div>
-                  <div class="card-footer">
-                    <a href="{{ route('project.detail',['project_id'=>$project->id]); }}  " class="btn btn-primary float-right ">MAS INFORMACIÓN <i class="fa fa-arrow-circle-right"></i> </a>
-                  </div>
-	              </div>
-	            </div>
-            @empty
-                <h2>No se econtraron resultados de proyectos.</h2>
-            @endforelse
+            <div class="row">
+            @foreach($projects as $project)
 
-            </div>
+            <div class="col-lg-3">
+              <div class="card h-100 mb-2">
+                <a href="{{ route('project.detail',['slug'=>$project->slug]) }}">
+                  <img class="card-img-top card-img-scale" src="{{ $project->image }}" alt="{{ $project->title }}">
+                </a>
+                <div class="card-body">
+                  <p class="card-title">{{ $project->title }}</p>
+                </div>
+                <div class="card-footer bg-transparent border-light">
+                      <a href="{{ route('project.detail',['slug'=>$project->slug]) }}" class="btn btn-abbaster">Ver detalle <i class="fa fa-arrow-alt-circle-right"></i></a>
+                </div>
+              </div>
+            </div><!-- /.col-lg-4 -->
+            @endforeach
+          </div><!-- /.row -->
+
         </div>
     </div>
 </div>

@@ -64,7 +64,7 @@ class ProjectController extends Controller
     public function store(Request $request){
         $request->validate([
             'title' => 'required|max:255',
-            'description' => 'required|max:255'
+            'description' => 'required'
           ]);
 
         $slug = $this->generateNewSlugProduct($request->title);
@@ -82,7 +82,7 @@ class ProjectController extends Controller
     public function update(Request $request){
         $request->validate([
             'title' => 'required|max:255',
-            'description' => 'required|max:255'
+            'description' => 'required'
           ]);
 
         $project = Project::findOrFail($request->project_id);
