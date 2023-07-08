@@ -96199,7 +96199,7 @@ var staticRenderFns = [
       _c("tr", [
         _c("th", [_vm._v("Opciones")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Estados")]),
+        _c("th", [_vm._v("Estatus")]),
         _vm._v(" "),
         _c("th", [_vm._v("Titulo")]),
         _vm._v(" "),

@@ -15,7 +15,7 @@
                     <thead>
                         <tr>
                             <th>Opciones</th>
-                            <th>Estados</th>
+                            <th>Estatus</th>
                             <th>Titulo</th>
                             <th>Imagenes</th>
                             <th>Video</th>
