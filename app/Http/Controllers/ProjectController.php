@@ -156,25 +156,12 @@ class ProjectController extends Controller
             'video' => 'required|file|mimetypes:video/mp4,video/x-m4v,video/*',
         ]);*/
     public function storeVideo(Request $request){
-
-        //$videoFile = $request->video;
-
-
         $project_id=$request->project_id;
         $folder = "proyectos";
-
         $project = Project::findOrFail($project_id);
         $project_path = Storage::disk('s3')->put($folder, $request->file('video'), 'public');
         $project->url_video = $project_path;
         $project->save();
-
-        /*$project_id = $request->project_id;
-        $folder = "video_test";
-
-        $project = Project::findOrFail($project_id);
-        $project_path = $request->file('video')->store($folder, 'public');
-        $project->url_video = $project_path;
-        $project->save();*/
     }
 
     public function deleteVideo(Request $request){
