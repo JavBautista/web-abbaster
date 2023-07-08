@@ -5,7 +5,7 @@
         <!-- Ejemplo de tabla Listado -->
         <div class="card">
             <div class="card-header">
-                <i class="fa fa-align-justify"></i> Projectos
+                <i class="fa fa-align-justify"></i> Proyectos
                 <button type="button" @click="abrirModal('proyecto','registrar')" class="btn btn-primary">
                     <i class="icon-plus"></i>&nbsp;Nuevo
                 </button>
@@ -17,6 +17,7 @@
                             <th>Opciones</th>
                             <th>Estados</th>
                             <th>Titulo</th>
+                            <th>Imagenes</th>
                             <th>Video</th>
                             <th>Creación</th>
                         </tr>
@@ -95,6 +96,14 @@
                                 </template>
                             </td>
                             <td v-text="proyecto.title"></td>
+                            <td align="center">
+                                <template v-if="proyecto.image !== null">
+                                    SI
+                                </template>
+                                <template v-else>
+                                    NO
+                                </template>
+                            </td>
                             <td align="center">
                                 <template v-if="proyecto.url_video!== null">
                                     <button class="btn  btn-info" @click="abrirModal('proyecto','open-video', proyecto)" ><i class="fa fa-play"></i></button>

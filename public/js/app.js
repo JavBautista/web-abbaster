@@ -94550,6 +94550,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -95234,7 +95243,7 @@ var render = function() {
       _c("div", { staticClass: "card" }, [
         _c("div", { staticClass: "card-header" }, [
           _c("i", { staticClass: "fa fa-align-justify" }),
-          _vm._v(" Projectos\n              "),
+          _vm._v(" Proyectos\n              "),
           _c(
             "button",
             {
@@ -95518,6 +95527,25 @@ var render = function() {
                     _c("td", {
                       domProps: { textContent: _vm._s(proyecto.title) }
                     }),
+                    _vm._v(" "),
+                    _c(
+                      "td",
+                      { attrs: { align: "center" } },
+                      [
+                        proyecto.image !== null
+                          ? [
+                              _vm._v(
+                                "\n                                  SI\n                              "
+                              )
+                            ]
+                          : [
+                              _vm._v(
+                                "\n                                  NO\n                              "
+                              )
+                            ]
+                      ],
+                      2
+                    ),
                     _vm._v(" "),
                     _c(
                       "td",
@@ -96174,6 +96202,8 @@ var staticRenderFns = [
         _c("th", [_vm._v("Estados")]),
         _vm._v(" "),
         _c("th", [_vm._v("Titulo")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Imagenes")]),
         _vm._v(" "),
         _c("th", [_vm._v("Video")]),
         _vm._v(" "),
