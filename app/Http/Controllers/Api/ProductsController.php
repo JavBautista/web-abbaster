@@ -12,6 +12,7 @@ class ProductsController extends Controller
         $products_featured = Product::where('destacado_gral', 1)
                             ->orderBy('destacado_gral_order','asc')
                             ->paginate(10);
-        dd($products_featured);
+
+        return $products_featured;
     }
 }
