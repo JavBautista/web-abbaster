@@ -198,4 +198,5 @@
       </div><!-- /.container -->
 
 </div>
+@include('parts.formulario_contacto',['shop_id'=>$shop->id])
 @endsection

@@ -31,6 +31,9 @@
           pointer-events: none;
       }
     </style>
+
+     @stack('styles-contacto')
+
 </head>
 <body>
   @php

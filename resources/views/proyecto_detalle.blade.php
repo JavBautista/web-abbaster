@@ -7,9 +7,10 @@
         </ol>
     </nav>
 
-    <div class="container-fluid">
+    <div class="container">
 
         <h1>{{ $project->title }}</h1>
+        <pre><p class="text-justify">{{ $project->description }}</p></pre>
         <div class="row justify-content-center">
             <div class="col-md-10">
                 <!-- @ include('parts.form_change_show_tax')-->
@@ -55,7 +56,6 @@
 
                     </div><!--/col-md-6-->
                     <div class="col-md-6">
-                       <p>{{ $project->description }}</p>
                        @if($url_video)
                             <div class="text-center">
                                 <div class="embed-responsive embed-responsive-16by9">
@@ -69,6 +69,8 @@
 
             </div>
         </div>
+
+        @include('parts.formulario_contacto')
     </div>
 @endsection
 

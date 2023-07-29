@@ -213,5 +213,7 @@
         </div>
       </div>
 
+
 </div>
+@include('parts.formulario_contacto',['shop_id'=>$shop->id])
 @endsection

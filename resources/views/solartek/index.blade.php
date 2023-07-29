@@ -43,4 +43,5 @@
         <h1>Bienvenido a Solartek México.</h1>
       @endif
 </div>
+@include('parts.formulario_contacto',['shop_id'=>$shop->id])
 @endsection

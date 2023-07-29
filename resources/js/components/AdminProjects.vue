@@ -26,57 +26,57 @@
                         <tr v-for="proyecto in arrayProject" :key="proyecto.id">
                             <td>
                                 <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
-                                    <i class="fa fa-ellipsis-v"></i>
-                                </button>
-                                <div class="dropdown-menu">
-                                   
-                                    <a class="dropdown-item" href="javascript:void(0)" @click="abrirModal('proyecto','actualizar', proyecto)">
-                                        <i class="fa fa-edit"></i> Actualizar Datos
-                                    </a>
-                                    
-                                    <a class="dropdown-item" href="javascript:void(0)" @click="abrirModal('proyecto','images', proyecto)">
-                                        <i class="fa fa-images"></i> Actualizar Imagenes
-                                    </a>
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                                        <i class="fa fa-ellipsis-v"></i>
+                                    </button>
+                                    <div class="dropdown-menu">
 
-                                    <template v-if="proyecto.url_video!== null">
-                                        <a class="dropdown-item" href="javascript:void(0)" @click="eliminarVideo(proyecto.id)">
-                                            <i class="fa fa-video"></i> Eliminar Video
+                                        <a class="dropdown-item" href="javascript:void(0)" @click="abrirModal('proyecto','actualizar', proyecto)">
+                                            <i class="fa fa-edit"></i> Actualizar Datos
                                         </a>
-                                    </template>
-                                    <template v-else>
-                                        <a class="dropdown-item" href="javascript:void(0)" @click="abrirModal('proyecto','store-video', proyecto)">
-                                            <i class="fa fa-video"></i> Subir Video
-                                        </a>
-                                    </template>
-                                    
-                                    <template v-if="proyecto.active">
-                                        <a  class="dropdown-item" @click="desactivarProjecto(proyecto.id)">
-                                        <i class="fa fa-thumbs-down"></i> Descativar
-                                        </a>
-                                    </template>
-                                    <template v-else>
-                                        <a class="dropdown-item" @click="activarProjecto(proyecto.id)">
-                                        <i class="fa fa-thumbs-up"></i> Activar
-                                        </a>
-                                    </template>
-                                    
-                                    <template v-if="proyecto.show_home">
-                                        <a  class="dropdown-item" @click="ocultarProjectoHome(proyecto.id)">
-                                        <i class="fa fa-eye-slash"></i> Ocultar del Inicio
-                                        </a>
-                                    </template>
-                                    <template v-else>
-                                        <a class="dropdown-item" @click="mostrarProjectoHome(proyecto.id)">
-                                        <i class="fa fa-eye"></i> Mostrar en el Inicio
-                                        </a>
-                                    </template>
 
-                                    <a class="dropdown-item" href="javascript:void(0)" @click="eliminarProjecto(proyecto.id)">
-                                        <i class="fa fa-trash"></i>&nbsp;Eliminar
-                                    </a>
+                                        <a class="dropdown-item" href="javascript:void(0)" @click="abrirModal('proyecto','images', proyecto)">
+                                            <i class="fa fa-images"></i> Actualizar Imagenes
+                                        </a>
+
+                                        <template v-if="proyecto.url_video!== null">
+                                            <a class="dropdown-item" href="javascript:void(0)" @click="eliminarVideo(proyecto.id)">
+                                                <i class="fa fa-video"></i> Eliminar Video
+                                            </a>
+                                        </template>
+                                        <template v-else>
+                                            <a class="dropdown-item" href="javascript:void(0)" @click="abrirModal('proyecto','store-video', proyecto)">
+                                                <i class="fa fa-video"></i> Subir Video
+                                            </a>
+                                        </template>
+
+                                        <template v-if="proyecto.active">
+                                            <a  class="dropdown-item" @click="desactivarProjecto(proyecto.id)">
+                                            <i class="fa fa-thumbs-down"></i> Descativar
+                                            </a>
+                                        </template>
+                                        <template v-else>
+                                            <a class="dropdown-item" @click="activarProjecto(proyecto.id)">
+                                            <i class="fa fa-thumbs-up"></i> Activar
+                                            </a>
+                                        </template>
+
+                                        <template v-if="proyecto.show_home">
+                                            <a  class="dropdown-item" @click="ocultarProjectoHome(proyecto.id)">
+                                            <i class="fa fa-eye-slash"></i> Ocultar del Inicio
+                                            </a>
+                                        </template>
+                                        <template v-else>
+                                            <a class="dropdown-item" @click="mostrarProjectoHome(proyecto.id)">
+                                            <i class="fa fa-eye"></i> Mostrar en el Inicio
+                                            </a>
+                                        </template>
+
+                                        <a class="dropdown-item" href="javascript:void(0)" @click="eliminarProjecto(proyecto.id)">
+                                            <i class="fa fa-trash"></i>&nbsp;Eliminar
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
                                                                 
                             </td>
                             
@@ -196,18 +196,18 @@
                                 </div>
                             </div>
                                 <!--./row-->
-                        </div>
+                        </div><!--.end tipoAcion==3 -->
                         <!--./tipoAcion==4: Upload Video-->
                         <div v-else-if="tipoAccion==4">
                             <div class="form-group">
                                 <label>Video</label>
                                 <input class="form-control"  type="file" name="video" @change="uploadVideo">
                             </div>
-                        </div>
+                        </div><!--.end tipoAcion==4 -->
                         <!--./tipoAcion==5: View Video-->
                         <div v-else-if="tipoAccion==5">
                             <video :src="url_video" width="100%" controls></video>
-                        </div>
+                        </div><!--.end tipoAcion==5 -->
 
                         <!--tipoAccion==1 o 2: Agregar o ACtualizar-->
                         <div v-else>
@@ -236,7 +236,7 @@
                             <label class="form-check-label" for="chk-active">Activo</label>
                           </div>
 
-                        </div>
+                        </div><!--.end v-else tipoAcion==1 o 2 -->
                         <!--./End v-else: tipoAccion==1 o 2: -->
                         
 
@@ -993,8 +993,9 @@
     .mostrar{
         display: list-item !important;
         opacity: 1 !important;
-        position: absolute !important;
+        position: fixed !important;
         background-color: #3c29297a !important;
+        overflow: scroll;
     }
 
     .div-error{

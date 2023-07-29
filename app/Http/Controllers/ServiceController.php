@@ -5,10 +5,38 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Shop;
 use App\Service;
+use App\ServiceImage;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class ServiceController extends Controller
 {
+    public function generateUniqueSlug($name, $currentSlug = null){
+        $slug = Str::slug($name);
+
+        // Verificar si el slug existe en la base de datos, excluyendo el slug actual (en caso de actualización)
+        $query = Service::where('slug', $slug);
+        if ($currentSlug) {
+            $query->where('slug', '!=', $currentSlug);
+        }
+        $count = $query->count();
+
+        // Si el slug no existe, retornarlo
+        if ($count == 0) {
+            return $slug;
+        }
+
+        // Si el slug existe, generar uno nuevo con un sufijo numérico
+        $suffix = 1;
+        while ($count > 0) {
+            $newSlug = $slug . '-' . $suffix;
+            $count = Service::where('slug', $newSlug)->count();
+            $suffix++;
+        }
+
+        return $newSlug;
+    }
+
     public function index(Request $request, $shop_id){
         $shop=Shop::find($shop_id);
         return view('admin.services.index',[
@@ -21,7 +49,8 @@ class ServiceController extends Controller
     public function getShopServices(Request $request){
         if(!$request->ajax()) return redirect('/');
         $shop_id=$request->shop_id;
-        $services = Service::where('shop_id',$shop_id)
+        $services = Service::with('images')
+            ->where('shop_id',$shop_id)
             ->orderBy('id','desc')
             ->paginate(10);
 
@@ -40,8 +69,7 @@ class ServiceController extends Controller
 
     public function store(Request $request){
         $request->validate([
-            'name' => 'required|max:255',
-            'description' => 'required|max:255'
+            'name' => 'required|max:255'
           ]);
         $shop_id=$request->shop_id;
           try{
@@ -53,10 +81,7 @@ class ServiceController extends Controller
                 $service->description = $request->description;
                 $service->cost = $request->cost;
                 $service->order_by = 0;
-                /*$service->image = $request->image;
-                $service->url_video = $request->url_video;
-                $service->slug = $request->slug;
-                */
+                $service->slug = $this->generateUniqueSlug($request->name);
                 $service->save();
 
                 return redirect()->route('dashboard.store.services.index',['shop_id'=>$shop_id])
@@ -74,6 +99,7 @@ class ServiceController extends Controller
         $service->name = $request->name;
         $service->description = $request->description;
         $service->cost = $request->cost;
+        $service->slug = $this->generateUniqueSlug($request->name, $service->slug);
         $service->save();
     }
 
@@ -99,5 +125,64 @@ class ServiceController extends Controller
             $video->delete();
         }*/
         $service->delete();
+    }
+
+    public function updateMainImage(Request $request){
+        $request->validate([
+            'main_image' => 'required|file|mimes:jpeg,png,jpg,gif,svg',
+        ]);
+
+        $service = Service::findOrFail($request->service_id);
+        $file = $service->getImageFileNameAttribute($service->image);
+        $exists  = Storage::disk('public')->exists('services/' . $file);
+        if($exists){
+            Storage::disk('public')->delete('services/' . $file);
+        }
+
+        $service->image = $request->file('main_image')->store('services', 'public');
+        $service->save();
+
+    }
+
+    public function uploadOtherImage(Request $request){
+        $request->validate([
+            'other_image' => 'required|file|mimes:jpeg,png,jpg,gif,svg',
+        ]);
+        $image_srevice = new ServiceImage();
+        $image_srevice->service_id  = $request->service_id;
+        $image_srevice->image       = $request->file('other_image')->store('services', 'public');
+        $image_srevice->save();
+    }
+
+    public function storeVideo(Request $request){
+        $service_id=$request->service_id;
+        $folder = "servicios";
+        $service = Service::findOrFail($service_id);
+        $service_path = Storage::disk('s3')->put($folder, $request->file('video'), 'public');
+        $service->url_video = $service_path;
+        $service->save();
+    }
+
+    public function deleteVideo(Request $request){
+        $service = service::findOrfail($request->id);
+        Storage::disk('s3')->delete($service->url_video);
+        $service->url_video=null;
+        $service->save();
+    }
+
+    public function getUrlVideo(Request $request){
+        $service = service::findOrFail($request->service_id);
+        return response()->json(['url' => Storage::disk('s3')->url($service->url_video) ]);
+
+    }
+
+    public function deleteOtherImage(Request $request){
+        $image = ServiceImage::findOrfail($request->id);
+        $file = $image->image;
+        $exists = Storage::disk('public')->exists($file);
+        if($exists){
+            Storage::disk('public')->delete($file);
+            $image->delete();
+        }
     }
 }

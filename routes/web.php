@@ -48,6 +48,11 @@ Route::get('/terminos-y-condiciones/', 'AbbasterPagesController@terminosyCondici
 Route::get('/politica-de-privacidad/', 'AbbasterPagesController@politicaDePrivacidad');
 Route::get('/access/', 'AbbasterPagesController@access');
 Route::post('/customer/register', 'CustomersController@registerCustomer');
+
+Route::post('/form-contact/store', 'MessagesContactController@store')->name('form_contact.store');
+
+
+
 #NEW ROUTES FOR COMPONENTES VUE
 Route::get('/web/product/comentarios/get/{product_id}', 'WebProductsController@getComentarios');
 Route::post('/web/product/comentarios/store', 'WebProductsController@storeComentario');
@@ -117,6 +122,7 @@ Auth::routes();
 	Route::get('/shop/{shop_slug}/store', 'ShopsWebPagesController@store')->name('shops.store');
 	Route::get('/shop/{shop_slug}/about', 'ShopsWebPagesController@about')->name('shops.about');
 	Route::get('/shop/{shop_slug}/services', 'ShopsWebPagesController@services')->name('shops.services');
+	Route::get('/shop/{shop_slug}/service/{service_slug}','ShopsWebPagesController@service')->name('shops.store.service');
 	Route::get('/shop/{shop_slug}/downloads', 'ShopsWebPagesController@downloads')->name('shops.downloads');
 
 	//Tenemos una ruta para buscar por ID y otra por SLug
@@ -135,6 +141,7 @@ Auth::routes();
 	Route::get('/eagletekmexico/', 'EagletekPagesController@index')->name('eagletek.index');
 	Route::get('/eagletekmexico/about', 'EagletekPagesController@about')->name('eagletek.about');
 	Route::get('/eagletekmexico/services', 'EagletekPagesController@services')->name('eagletek.services');
+	Route::get('/eagletekmexico/service/{slug}','EagletekPagesController@service')->name('eagletekmexico.store.service');
 	Route::get('/eagletekmexico/support', 'EagletekPagesController@support')->name('eagletek.support');
 	Route::get('/eagletekmexico/search', 'EagletekPagesController@search')->name('eagletek.search');
 	Route::get('/eagletekmexico/descargas', 'EagletekPagesController@descargas')->name('eagletek.descargas');
@@ -149,6 +156,8 @@ Auth::routes();
 
 	Route::get('/eagletekmexico/category/{category_id}/product/{product_id}', 'EagletekPagesController@product')->name('eagletekmexico.store.category.product');
 	Route::get('/eagletekmexico/producto/{slug}', 'EagletekPagesController@productSlug')->name('eagletekmexico.store.product.slug');
+
+
 	#./Paginas de store
 	#---------------------------------------------------------------------------------------------
 
@@ -176,6 +185,7 @@ Auth::routes();
 
 	Route::get('/ziotrobotik/about', 'ZiotrobotikPagesController@about')->name('ziotrobotik.about');
 	Route::get('/ziotrobotik/services', 'ZiotrobotikPagesController@services')->name('ziotrobotik.services');
+	Route::get('/ziotrobotik/service/{slug}','ZiotrobotikPagesController@service')->name('ziotrobotik.store.service');
 	Route::get('/ziotrobotik/support', 'ZiotrobotikPagesController@support')->name('ziotrobotik.support');
 	Route::get('/ziotrobotik/descargas', 'ZiotrobotikPagesController@descargas')->name('ziotrobotik.descargas');
 	Route::get('/ziotrobotik/descargas/{file}', 'ZiotrobotikPagesController@downloadFile')->name('ziotrobotik.descargas.download.file');
@@ -204,6 +214,7 @@ Auth::routes();
 
 	Route::get('/euderm/about', 'EudermPagesController@about')->name('euderm.about');
 	Route::get('/euderm/services', 'EudermPagesController@services')->name('euderm.services');
+	Route::get('/euderm/service/{slug}','EudermPagesController@service')->name('euderm.store.service');
 	Route::get('/euderm/support', 'EudermPagesController@support')->name('euderm.support');
 	Route::get('/euderm/descargas', 'EudermPagesController@descargas')->name('euderm.descargas');
 	Route::get('/euderm/descargas/{file}', 'EudermPagesController@downloadFile')->name('euderm.descargas.download.file');
@@ -420,6 +431,14 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/dashboard/customers', 'CustomersController@indexCustomers')->name('ntf.customers');
 	Route::get('/customers/get', 'CustomersController@getCustomers');
 
+
+	#------------------------------
+	//MESSAGES FORM CONTACT
+	Route::get('/dashboard/messages-form-contact', 'MessagesContactController@index')->name('dashboard.messages-form-contact');
+	Route::get('/messages-form-contact/get', 'MessagesContactController@get');
+
+	Route::put('/messages-form-contact/update-read', 'MessagesContactController@updateRead');
+
 	#--------------------------------------------------------------------------------------------------------------
 	#SCRIPTS
 	Route::get('/dashboard/scripts', 'ScriptsController@index');
@@ -489,6 +508,13 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('/admin/service/active', 'ServiceController@active');
 	Route::put('/admin/service/deactive', 'ServiceController@deactive');
 	Route::put('/admin/service/delete', 'ServiceController@delete');
+	Route::post('/admin/service/update-main-image','ServiceController@updateMainImage');
+	Route::post('/admin/service/upload-other-image','ServiceController@uploadOtherImage');
+	Route::put('/admin/service/delete-other-image','ServiceController@deleteOtherImage');
+
+	Route::post('/admin/service/store-video','ServiceController@storeVideo');
+	Route::put('/admin/service/delete-video','ServiceController@deleteVideo');
+	Route::get('/admin/service/video/get-url/{service_id}', 'ServiceController@getUrlVideo' );
 
 	#----------------------------------------------------------------------------------------------------------
 	#LINKS CURSOS
@@ -741,10 +767,11 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('/admin/projects/delete','ProjectController@delete');
 	Route::post('/admin/projects/update-main-image','ProjectController@updateMainImage');
 	Route::post('/admin/projects/upload-other-image','ProjectController@uploadOtherImage');
+	Route::put('/admin/projects/delete-other-image','ProjectController@deleteOtherImage');
+
 	Route::post('/admin/projects/store-video','ProjectController@storeVideo');
 	Route::put('/admin/projects/delete-video','ProjectController@deleteVideo');
 	Route::get('/admin/projects/video/get-url/{project_id}', 'ProjectController@getUrlVideo' );
-	Route::put('/admin/projects/delete-other-image','ProjectController@deleteOtherImage');
 
 
 	#---------Shops

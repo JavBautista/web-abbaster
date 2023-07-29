@@ -24,6 +24,7 @@
     <link href="{{ asset('css/lightbox.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/fwhatsapp.min.css')}}">
     @stack('styles')
+    @stack('styles-contacto')
 </head>
 <body>
     <div id="fb-root"></div>

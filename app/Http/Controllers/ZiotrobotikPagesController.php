@@ -11,6 +11,7 @@ use App\Shop;
 use App\Category;
 use App\Product;
 use App\Shipping;
+use App\Service;
 use App\DownloadDocument;
 use App\WebContentAboutUs;
 use App\WebContentServices;
@@ -193,9 +194,11 @@ class ZiotrobotikPagesController extends Controller
     public function services(){
         $shop=Shop::find(self::TIENDA_ID);
         $content_html = $this->getImagesAndContentWebHtml('services');
+        $services = Service::where('shop_id',$shop->id)->paginate(20);
         return view(self::TIENDA_DIR.'.services',[
             'content_html'=>$content_html,
             'shop'=>$shop,
+            'services'=>$services,
         ]);
     }
 
@@ -243,6 +246,24 @@ class ZiotrobotikPagesController extends Controller
             'count_products'=>$count_products,
             'products'=>$products,
             'shop'=>$shop,
+        ]);
+    }
+
+    public function service(Request $request){
+
+        $shop=Shop::find(self::TIENDA_ID);
+        $slug = $request->slug;
+        $service = Service::where('slug',$slug)->first();
+
+        $url_video=null;
+        if($service->url_video){
+            $url_video = Storage::disk('s3')->url($service->url_video);
+        }
+
+        return view(self::TIENDA_DIR.'.service',[
+            'service'=>$service,
+            'shop'=>$shop,
+            'url_video'=>$url_video
         ]);
     }
 

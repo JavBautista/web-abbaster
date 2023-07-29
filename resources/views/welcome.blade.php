@@ -132,7 +132,7 @@
 
 
         </div><!-- /.container -->
-        <hr>
+
         @endif
     </section>
   @endif
@@ -163,7 +163,6 @@
 
   </section>
   @if($acceso_tiendas->show)
-    <hr>
     <section>
       <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
         <h2 class="display-4">{{$acceso_tiendas->title}}</h2>
@@ -245,7 +244,6 @@
               </div>
             </div>
           </div>
-          <hr>
         @endforeach
 
       </div>
@@ -264,7 +262,7 @@
             <div class="card-body">
               <h2>{{$seccion_crece->title}}</h2>
               {!! $section_crece !!}
-              <hr>
+
               <a href="/crece/" class="btn btn-light">Vamos <i class="fa fa-arrow-circle-right"></i> </a>
             </div>
           </div>
@@ -276,7 +274,7 @@
 
 
   @if($logos_tiendas->show)
-    <hr>
+
     <section>
       <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
         <h2 class="display-4">{{$logos_tiendas->title}}</h2>
@@ -306,5 +304,8 @@
       </div>
     </section>
   @endif
+
+
+  @include('parts.formulario_contacto')
 
 @endsection

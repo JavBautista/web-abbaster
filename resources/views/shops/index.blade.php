@@ -137,5 +137,5 @@
     @endif
   </div><!-- /.container marketing -->
 </div><!--./container-fluid"-->
-
+@include('parts.formulario_contacto',['shop_id'=>$shop->id])
 @endsection

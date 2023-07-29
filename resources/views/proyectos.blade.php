@@ -35,5 +35,9 @@
 
         </div>
     </div>
+
+    @include('parts.formulario_contacto')
+
+
 </div>
 @endsection

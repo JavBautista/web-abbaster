@@ -21,6 +21,7 @@ window.Vue = require('vue');
 Vue.component('admin-courses', require('./components/AdminCourses.vue'));
 Vue.component('admin-course-videos', require('./components/AdminCourseVideos.vue'));
 Vue.component('admin-messages-customer', require('./components/AdminMessagesCustomer.vue'));
+Vue.component('admin-messages-form-contact', require('./components/AdminMessagesFormContact.vue'));
 Vue.component('admin-products', require('./components/AdminProducts.vue'));
 Vue.component('admin-projects', require('./components/AdminProjects.vue'));
 Vue.component('admin-po-products', require('./components/AdminPurchaseOrderProducts.vue'));
@@ -31,6 +32,7 @@ Vue.component('admin-testimonios', require('./components/AdminTestimonios.vue'))
 Vue.component('admin-users', require('./components/AdminUsers.vue'));
 Vue.component('operation-recepcion', require('./components/CedisOperationRecepcion.vue'));
 Vue.component('confirm-payment', require('./components/ConfirmPayment.vue'));
+Vue.component('contact-form', require('./components/ContactForm.vue'));
 Vue.component('customer-course-video', require('./components/CustomerCourseVideos.vue'));
 Vue.component('customer-information', require('./components/CustomerInformation.vue'));
 Vue.component('customer-messages', require('./components/CustomerMessages.vue'));

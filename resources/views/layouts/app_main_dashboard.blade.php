@@ -49,7 +49,8 @@
                         $ntf_questions=getNotificaciones();
                         $ntf_customer =getCustomersNotificaciones();
                         $ntf_msgs_customer =getNotificacionesMessagesCustomer();
-                        $ntf_total= $ntf_questions+$ntf_customer+$ntf_msgs_customer;
+                        $ntf_msgs_form_contact =getNotificacionesMessagesFormContact();
+                        $ntf_total= $ntf_questions+$ntf_customer+$ntf_msgs_customer+$ntf_msgs_form_contact;
                     @endphp
                    @if($ntf_total)
                         <span class="badge badge-pill badge-danger">{{$ntf_total}}</span>
@@ -74,6 +75,13 @@
                         <i class="fa fa-comments"></i> Mensajes
                         @if($ntf_msgs_customer)
                         <span class="badge badge-danger">{{$ntf_msgs_customer}}</span>
+                        @endif
+                    </a>
+
+                    <a class="dropdown-item" href="{{ route('dashboard.messages-form-contact') }}">
+                        <i class="fa fa-comments"></i> Mensajes Form Contacto
+                        @if($ntf_msgs_form_contact )
+                        <span class="badge badge-danger">{{$ntf_msgs_form_contact}}</span>
                         @endif
                     </a>
                     <!--<a class="dropdown-item" href="{ { route('dashboard.store.customers.index',['id'=>1]) }}">-->
@@ -235,6 +243,10 @@
                                 <a class="nav-link" href="{{ route('global-configurations.dollar_price') }}"><i class="fa fa-money-bill"></i> Precio Dollar</a>
                             </li>
                         </ul>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{{ route('dashboard.messages-form-contact') }}" class="nav-link"><i class="fa fa-envelope-o"></i> Mensajes de Form. Contact. @if( isset($ntf_msgs_form_contact) && $ntf_msgs_form_contact>0) <span class="badge badge-danger">{{$ntf_msgs_form_contact}}</span> @endif</a>
                     </li>
 
 

@@ -10,6 +10,7 @@ use App\Shop;
 use App\Category;
 use App\Product;
 use App\Shipping;
+use App\Service;
 use App\DownloadDocument;
 use App\WebContentAboutUs;
 use App\WebContentServices;
@@ -110,7 +111,8 @@ class ShopsWebPagesController extends Controller
     public function services($shop_slug){
         $shop=Shop::where('slug',$shop_slug)->firstOrFail();
         $content_html = $this->getImagesAndContentWebHtml('services',$shop->id);
-        return view('shops.services',['content_html'=>$content_html,'shop'=>$shop]);
+        $services = Service::where('shop_id',$shop->id)->paginate(20);
+        return view('shops.services',['content_html'=>$content_html,'shop'=>$shop,'services'=>$services]);
     }//services
 
     public function downloads($shop_slug){
@@ -190,5 +192,21 @@ class ShopsWebPagesController extends Controller
             'suggested_products'=>$suggested_products,
         ]);
     }//productSlug
+
+    public function service($shop_slug, $service_slug){
+        $shop=Shop::where('slug',$shop_slug)->firstOrFail();
+        $service = Service::where('slug',$service_slug)->first();
+
+        $url_video=null;
+        if($service->url_video){
+            $url_video = Storage::disk('s3')->url($service->url_video);
+        }
+
+        return view('shops.service',[
+            'service'=>$service,
+            'shop'=>$shop,
+            'url_video'=>$url_video
+        ]);
+    }
 
 }

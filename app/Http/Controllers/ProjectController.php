@@ -10,6 +10,32 @@ use Illuminate\Support\Str as Str;
 
 class ProjectController extends Controller
 {
+    public function generateUniqueSlug($name, $currentSlug = null){
+        $slug = Str::slug($name);
+
+        // Verificar si el slug existe en la base de datos, excluyendo el slug actual (en caso de actualización)
+        $query = Project::where('slug', $slug);
+        if ($currentSlug) {
+            $query->where('slug', '!=', $currentSlug);
+        }
+        $count = $query->count();
+
+        // Si el slug no existe, retornarlo
+        if ($count == 0) {
+            return $slug;
+        }
+
+        // Si el slug existe, generar uno nuevo con un sufijo numérico
+        $suffix = 1;
+        while ($count > 0) {
+            $newSlug = $slug . '-' . $suffix;
+            $count = Project::where('slug', $newSlug)->count();
+            $suffix++;
+        }
+
+        return $newSlug;
+    }
+
     public function index(){
         return view('admin.projects.index');
     }
@@ -36,45 +62,17 @@ class ProjectController extends Controller
         ];
     }
 
-    private function generarRandSlug($longitud) {
-        $key = '';
-        $pattern = '1234567890abcdefghijklmnopqrstuvwxyz';
-        $max = strlen($pattern)-1;
-        for($i=0;$i < $longitud;$i++) $key .= $pattern[mt_rand(0,$max)];
-        return $key;
-    }
-
-    private function generateNewSlugProduct($name){
-        $sigue=true;
-        $rand_str='';//la primera vez no generara nada, para conservar un slug mas limpio
-        while($sigue){
-            $new_slug=$rand_str;
-            $new_slug.= Str::slug($name);
-            $existe=Project::where('slug',$new_slug)->first();
-            if(!$existe){
-                $sigue=false;
-                break;
-            }
-            $rand_str = $this->generarRandSlug(5);
-            $rand_str .= '-';
-        }
-        return $new_slug;
-    }
-
     public function store(Request $request){
         $request->validate([
             'title' => 'required|max:255',
             'description' => 'required'
           ]);
-
-        $slug = $this->generateNewSlugProduct($request->title);
-
         $project = new Project;
         $project->active = $request->active;
         $project->show_home = $request->show_home;
         $project->title = $request->title;
         $project->description = $request->description;
-        $project->slug = $slug;
+        $project->slug = $this->generateUniqueSlug($request->title);;
         $project->save();
            
     }
@@ -90,6 +88,7 @@ class ProjectController extends Controller
         $project->show_home = $request->show_home;
         $project->title = $request->title;
         $project->description = $request->description;
+        $project->slug = $this->generateUniqueSlug($request->name, $project->slug);;
         $project->save();
            
     }
@@ -119,6 +118,13 @@ class ProjectController extends Controller
 
     public function delete(Request $request){
         $project=Project::find($request->id);
+        //eliminamos imagene principal
+        $file = $project->getImageFileNameAttribute($project->image);
+        $exists  = Storage::disk('public')->exists('projects/' . $file);
+        if($exists){
+            Storage::disk('public')->delete('projects/' . $file);
+        }
+        //eliminamos video si existe
         if($project->url_video){
             Storage::disk('s3')->delete($project->url_video);
         }
@@ -152,9 +158,6 @@ class ProjectController extends Controller
         $image_project->save();
     }
 
-        /*$request->validate([
-            'video' => 'required|file|mimetypes:video/mp4,video/x-m4v,video/*',
-        ]);*/
     public function storeVideo(Request $request){
         $project_id=$request->project_id;
         $folder = "proyectos";

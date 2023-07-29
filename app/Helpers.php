@@ -9,6 +9,7 @@ use App\Category;
 use App\ProductQuestions;
 use App\CustomerNotification;
 use App\Message;
+use App\MessagesContact;
 use App\DollarPrice;
 use App\WebContentBannerLoop;
 use App\AbbasterInformation;
@@ -84,6 +85,12 @@ function contVisitaCategoria($category_id){
 
 	function getNotificacionesMessagesCustomer(){
 		$notifications = Message::where('status',0)->get();
+		$count = $notifications?$notifications->count():0;
+		return $count;
+	}
+
+	function getNotificacionesMessagesFormContact(){
+		$notifications = MessagesContact::where('read',0)->get();
 		$count = $notifications?$notifications->count():0;
 		return $count;
 	}
