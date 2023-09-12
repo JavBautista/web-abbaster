@@ -3,6 +3,10 @@
 <main class="main">
 @include('admin.breadcrumb',['item'=>'store.categories.index'])
 <div class="container-fluid">
+
+    <!--<admin-categories></admin-categories>
+    <hr>-->
+
     <div class="row justify-content-center">
         <div class="col-md-10">
             <p><a href="{{ route('categories.add',['shop_id'=>$shop->id]) }}" class="btn btn-outline-primary float-right mb-2">Nueva</a></p>

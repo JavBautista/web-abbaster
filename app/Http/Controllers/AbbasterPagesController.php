@@ -167,11 +167,24 @@ class AbbasterPagesController extends Controller
     public function search(SearchRequest $request){
         $shops   = Shop::where('status',0)->get();
         $query = $request->input('query');
-        $products = Product::where('name','LIKE',"%$query%")
+        /*$products = Product::where('name','LIKE',"%$query%")
                     ->orwhere('key','LIKE',"%$query%")
                     ->orwhere('keywords','LIKE',"%$query%")
                     ->orderBy('name','desc')
-                    ->get();
+                    ->get();*/
+         //Divide la consulta en palabras individuales
+        $keywords = explode(' ', $query);
+
+        $products = Product::where(function ($query) use ($keywords) {
+            foreach ($keywords as $keyword) {
+                $query->orWhere('name', 'LIKE', "%$keyword%")
+                      ->orWhere('key', 'LIKE', "%$keyword%")
+                      ->orWhere('keywords', 'LIKE', "%$keyword%");
+            }
+        })
+        ->orderBy('name', 'desc')
+        ->get();
+
         $count_products=$products?$products->count():0;
         return view('search',[
             'query'=>$query,

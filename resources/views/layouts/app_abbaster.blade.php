@@ -54,7 +54,7 @@
           </div>
           <div class="col">
             <form class="form-inline d-inline w-100" action="{{ route('ababster.search') }}">
-              <div class="input-group input-group-sm mt-1">
+              <div class="input-group input-group-lg mt-1">
                 <input type="text" name="query" class="form-control" placeholder="Cerraduras, cámaras, GPS, etc." aria-label="Recipient's username" aria-describedby="button-addon2">
                 <div class="input-group-append">
                   <button class="btn btn-outline-light" id="button-addon2"><i class="fa fa-search"></i></button>

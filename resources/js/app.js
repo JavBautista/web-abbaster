@@ -18,6 +18,7 @@ window.Vue = require('vue');
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
 
+Vue.component('admin-categories', require('./components/AdminCategories.vue'));
 Vue.component('admin-courses', require('./components/AdminCourses.vue'));
 Vue.component('admin-course-videos', require('./components/AdminCourseVideos.vue'));
 Vue.component('admin-messages-customer', require('./components/AdminMessagesCustomer.vue'));
