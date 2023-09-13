@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\MessagesContact;
+use Exception;
+use Illuminate\Validation\Rule;
 
 class MessagesContactController extends Controller
 {
@@ -29,15 +31,30 @@ class MessagesContactController extends Controller
     }
 
     public function store(Request $request){
-        $message = new MessagesContact();
-        $message->read    = 0;
-        $message->shop_id = $request->shop_id;
-        $message->name    = $request->name;
-        $message->email   = $request->email;
-        $message->phone   = $request->phone;
-        $message->message = $request->message;
-        $message->save();
-        return redirect()->back()->with('success', 'Mensaje enviado correctamente. Nos pondremos en contacto con usted.');
+        try {
+            $validatedData = $request->validate([
+                'shop_id' => 'required|integer',
+                'name' => 'required|string|max:255',
+                'email' => 'required|email',
+                'phone' => 'nullable|string|max:20',
+                'message' => 'required|string',
+                'g-recaptcha-response' => ['required', Rule::in([request('g-recaptcha-response')])],
+            ]);
+
+            $message = new MessagesContact();
+            $message->read = 0;
+            $message->shop_id = $validatedData['shop_id'];
+            $message->name = $validatedData['name'];
+            $message->email = $validatedData['email'];
+            $message->phone = $validatedData['phone'];
+            $message->message = $validatedData['message'];
+            $message->save();
+
+            return redirect()->back()->with('success', 'Mensaje enviado correctamente. Nos pondremos en contacto con usted.');
+        } catch (Exception $e) {
+            // Aquí puedes manejar la excepción como desees, por ejemplo, registrarla o redirigir con un mensaje de error.
+            return redirect()->back()->with('error', 'Ha ocurrido un error al enviar el mensaje.');
+        }
     }
 
     public function updateRead(Request $request){

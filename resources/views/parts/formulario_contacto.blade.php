@@ -16,26 +16,31 @@
                   </div>
                 @endif
                 <h2 class="text-center mb-4">Contactenos</h2>
+
                 <form action="{{ route('form_contact.store') }}" method="post">
-                  @csrf
-                  <input type="hidden" name='shop_id' value="{{$input_shop_id}}">
-                  <div class="form-group">
-                    <label for="name">Nombre</label>
-                    <input type="text" class="form-control" id="name" name="name" placeholder="Ingrese su nombre" required>
-                  </div>
-                  <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" class="form-control" id="email" name="email" placeholder="Ingrese su email" required>
-                  </div>
-                  <div class="form-group">
-                    <label for="phone">Teléfono</label>
-                    <input type="text" class="form-control" id="phone" name="phone" placeholder="Ingrese su teléfono">
-                  </div>
-                  <div class="form-group">
-                    <label for="message">Mensaje</label>
-                    <textarea class="form-control" id="message" name="message" rows="5" placeholder="Ingrese su mensaje"></textarea>
-                  </div>
-                  <button type="submit" class="btn btn-primary">Enviar</button>
+                    @csrf
+                    <input type="hidden" name='shop_id' value="{{ $input_shop_id }}">
+                    <div class="form-group">
+                        <label for="name">Nombre</label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Ingrese su nombre" required maxlength="255" pattern="[A-Za-z\s]+">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Ingrese su email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Teléfono</label>
+                        <input type="tel" class="form-control" id="phone" name="phone" placeholder="Ingrese su teléfono" maxlength="20" pattern="[0-9]+">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Mensaje</label>
+                            <textarea class="form-control" id="message" name="message" rows="5" placeholder="Ingrese su mensaje" required pattern="[\w\s.,!?()-]+"></textarea>
+                    </div>
+                    <!-- Agregar el campo CAPTCHA aquí si decides implementarlo -->
+                    <div class="form-group">
+                        <div class="g-recaptcha" data-sitekey="{{ config('services.nocaptcha.sitekey') }}"></div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Enviar</button>
                 </form>
               </div>
             </div>

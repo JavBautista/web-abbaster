@@ -22,6 +22,10 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/abbaster.css')}}">
     <link rel="stylesheet" href="{{ asset('css/fwhatsapp.min.css')}}">
+
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+
     <style>
       .dropdown:hover>.dropdown-menu {
         display: block;
@@ -298,6 +302,7 @@
   <script src="{{ asset('js/holder.min.js') }}" ></script>
   <script src="{{ asset('js/fwhatsapp.min.js') }}"></script>
   <script src="{{ asset('js/sweetalert2.js') }}"></script>
+
   <script>
      $(function () {
       let movil_tmp = {{ $movil }};
