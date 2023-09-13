@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="{{ asset('css/abbaster.css')}}">
     <link rel="stylesheet" href="{{ asset('css/fwhatsapp.min.css')}}">
 
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script src="https://www.google.com/recaptcha/api.js?trustedtypes=true" async defer></script>
 
 
     <style>
