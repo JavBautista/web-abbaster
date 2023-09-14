@@ -289,7 +289,7 @@
 
             @foreach($shops as $shop)
               @if(isset( $tdas_logos[$shop->id]))
-                <div class="card">
+                <div class="card" data-toggle="tooltip" title="{{$shop->description}}">
                   <img class="card-img-top" src="{{$shop->getLogoStore($shop->logo)}}" alt="logo-{{$shop->name}}">
                   <div class="card-footer text-center bg-white border-light">
                     <h5>{{$shop->name}}</h5>
@@ -307,5 +307,4 @@
 
 
   @include('parts.formulario_contacto')
-
 @endsection

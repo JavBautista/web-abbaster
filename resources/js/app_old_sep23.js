@@ -65,32 +65,55 @@ Vue.component('warehouse-component', require('./components/Warehouse.vue'));
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+
 const app = new Vue({
     el: '#app'
 });
 
-// Inicialización de Summernote
+//console.log('Mensaje desde app.js');
+
 $(document).ready(function() {
   $('#summernote').summernote();
 });
 
-// Importación y configuración de jQuery y jQuery UI
+/*   script que guarda temporalmente el pago */
+window.mercadoPago  = function (cart_id, url_redirect, cart_title) {
+    axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+    var url = '/payment/mercadopago/preorder';
+    axios.post
+    (url, {cart_id: cart_id, cart_title: cart_title})
+        .then(function (response) {
+            var status = response.data.status;
+            console.log(url_redirect);
+
+            if(status == 200){
+                window.location = url_redirect
+                ;
+            }
+        })
+        .catch(function (error) {
+
+        })
+        .then(function () {
+        });
+}
+
 import $ from 'jquery';
 window.$ = window.jQuery = $;
 
 import 'jquery-ui/ui/widgets/datepicker.js';
 
-// Inicialización de Bootstrap tooltips
-$(document).ready(function() {
-  $('[data-toggle="tooltip"]').tooltip();
-});
 
-// Inicialización de datepicker
+/* $( "#datepicker" ).datepicker(); */
 $('.datepicker').datepicker({
     altFormat: "YYYY-MM-DD"
 });
 
-// Configuración de datetimepicker
+
+
+
+
 jQuery.extend(true, jQuery.fn.datetimepicker.defaults, {
     icons: {
       time: 'far fa-clock',
@@ -104,25 +127,4 @@ jQuery.extend(true, jQuery.fn.datetimepicker.defaults, {
       close: 'far fa-times-circle'
     }
 });
-
-/*   script que guarda temporalmente el pago */
-window.mercadoPago  = function (cart_id, url_redirect, cart_title) {
-    axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-
-    var url = '/payment/mercadopago/preorder';
-    axios.post(url, { cart_id: cart_id, cart_title: cart_title })
-        .then(function (response) {
-            var status = response.data.status;
-            console.log(url_redirect);
-
-            if (status == 200) {
-                window.location = url_redirect;
-            }
-        })
-        .catch(function (error) {
-
-        })
-        .then(function () {
-        });
-}
 

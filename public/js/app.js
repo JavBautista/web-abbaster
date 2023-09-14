@@ -42549,15 +42549,44 @@ Vue.component('warehouse-component', __webpack_require__(379));
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-
 var app = new Vue({
     el: '#app'
 });
 
-//console.log('Mensaje desde app.js');
-
+// Inicialización de Summernote
 __WEBPACK_IMPORTED_MODULE_0_jquery___default()(document).ready(function () {
     __WEBPACK_IMPORTED_MODULE_0_jquery___default()('#summernote').summernote();
+});
+
+// Importación y configuración de jQuery y jQuery UI
+
+window.$ = __webpack_provided_window_dot_jQuery = __WEBPACK_IMPORTED_MODULE_0_jquery___default.a;
+
+
+
+// Inicialización de Bootstrap tooltips
+__WEBPACK_IMPORTED_MODULE_0_jquery___default()(document).ready(function () {
+    __WEBPACK_IMPORTED_MODULE_0_jquery___default()('[data-toggle="tooltip"]').tooltip();
+});
+
+// Inicialización de datepicker
+__WEBPACK_IMPORTED_MODULE_0_jquery___default()('.datepicker').datepicker({
+    altFormat: "YYYY-MM-DD"
+});
+
+// Configuración de datetimepicker
+jQuery.extend(true, jQuery.fn.datetimepicker.defaults, {
+    icons: {
+        time: 'far fa-clock',
+        date: 'far fa-calendar',
+        up: 'fas fa-arrow-up',
+        down: 'fas fa-arrow-down',
+        previous: 'fas fa-chevron-left',
+        next: 'fas fa-chevron-right',
+        today: 'fas fa-calendar-check',
+        clear: 'far fa-trash-alt',
+        close: 'far fa-times-circle'
+    }
 });
 
 /*   script que guarda temporalmente el pago */
@@ -42574,30 +42603,6 @@ window.mercadoPago = function (cart_id, url_redirect, cart_title) {
         }
     }).catch(function (error) {}).then(function () {});
 };
-
-
-window.$ = __webpack_provided_window_dot_jQuery = __WEBPACK_IMPORTED_MODULE_0_jquery___default.a;
-
-
-
-/* $( "#datepicker" ).datepicker(); */
-__WEBPACK_IMPORTED_MODULE_0_jquery___default()('.datepicker').datepicker({
-    altFormat: "YYYY-MM-DD"
-});
-
-jQuery.extend(true, jQuery.fn.datetimepicker.defaults, {
-    icons: {
-        time: 'far fa-clock',
-        date: 'far fa-calendar',
-        up: 'fas fa-arrow-up',
-        down: 'fas fa-arrow-down',
-        previous: 'fas fa-chevron-left',
-        next: 'fas fa-chevron-right',
-        today: 'fas fa-calendar-check',
-        clear: 'far fa-trash-alt',
-        close: 'far fa-times-circle'
-    }
-});
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(17), __webpack_require__(17), __webpack_require__(4), __webpack_require__(4)))
 
 /***/ }),

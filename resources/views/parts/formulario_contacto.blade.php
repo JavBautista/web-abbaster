@@ -37,9 +37,9 @@
                             <textarea class="form-control" id="message" name="message" rows="5" placeholder="Ingrese su mensaje" required pattern="[\w\s.,!?()-]+"></textarea>
                     </div>
                     <!-- Agregar el campo CAPTCHA aquí si decides implementarlo -->
-                    <div class="form-group">
-                        <div class="g-recaptcha" data-sitekey="{{ config('services.nocaptcha.sitekey') }}"></div>
-                    </div>
+                    <!--<div class="form-group">
+                        <div class="g-recaptcha" data-sitekey="{ { config('services.nocaptcha.sitekey') }}"></div>
+                    </div>-->
                     <button type="submit" class="btn btn-primary">Enviar</button>
                 </form>
               </div>

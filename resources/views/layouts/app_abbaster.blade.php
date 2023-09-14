@@ -26,6 +26,7 @@
     <script src="https://www.google.com/recaptcha/api.js?trustedtypes=true" async defer></script>
 
 
+
     <style>
       .dropdown:hover>.dropdown-menu {
         display: block;
@@ -33,6 +34,30 @@
       .dropdown>.dropdown-toggle:active {
         /*Without this, clicking will make it sticky*/
           pointer-events: none;
+      }
+
+      /* Anula los estilos de Bootstrap para el input-group y el botón */
+      .form-inline .input-group {
+          margin-top: 0; /* Elimina el margen superior */
+      }
+
+      .form-inline .form-control {
+          border-radius: 0; /* Esquinas cuadradas */
+          border: 1px solid #ccc; /* Borde del input */
+          padding: 10px; /* Espaciado interno */
+      }
+
+      .form-inline .btn-outline-light {
+          border-radius: 0; /* Esquinas cuadradas */
+          border: 1px solid #ccc; /* Borde del botón */
+          background-color: #fff; /* Fondo blanco */
+          color: #333; /* Color de texto */
+          transition: background-color 0.3s, color 0.3s; /* Transición suave */
+      }
+
+      .form-inline .btn-outline-light:hover {
+          background-color: #333; /* Cambia el fondo en el hover */
+          color: #fff; /* Cambia el color de texto en el hover */
       }
     </style>
 
@@ -53,7 +78,6 @@
         
         <div class="row w-100">
           <div class="col col-2 col-sm-auto">
-            
             <a class="nav-link navbar-brand" href="/"></a>
           </div>
           <div class="col">
@@ -115,7 +139,7 @@
       </div>
     </nav>
     <nav class="navbar navbar-expand-lg navbar-light bg-light" style="{{$style}}" >
-      <div class="container" style="{{$style}}" >
+      <div class="container py-2" style="{{$style}}" >
         
         <button class="navbar-toggler mb-2" type="button" data-toggle="collapse" data-target="#navbar-abbaster" aria-controls="navbar-abbaster" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -344,6 +368,7 @@
         $("#c > li").eq(i + 3).css('left','75%').addClass('active').css('transition-delay','2s');
       }, timer);
   </script>
+
 </body>
 </html>
 
