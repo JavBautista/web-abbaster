@@ -438,6 +438,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/messages-form-contact/get', 'MessagesContactController@get');
 
 	Route::put('/messages-form-contact/update-read', 'MessagesContactController@updateRead');
+	Route::put('/messages-form-contact/delete', 'MessagesContactController@delete');
 
 	#--------------------------------------------------------------------------------------------------------------
 	#SCRIPTS

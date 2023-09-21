@@ -88065,6 +88065,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -88198,6 +88203,41 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 return message;
             }
         },
+        eliminaMessage: function eliminaMessage(id) {
+            var _this2 = this;
+
+            console.log('eliminar msg');
+            var swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: 'btn btn-success',
+                    cancelButton: 'btn btn-danger'
+                },
+                buttonsStyling: false
+            });
+
+            swalWithBootstrapButtons.fire({
+                title: '¿Desea eliminar este mensaje?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Aceptar',
+                cancelButtonText: 'Cancelar',
+                reverseButtons: true
+            }).then(function (result) {
+                if (result.value) {
+
+                    var me = _this2;
+                    axios.put('/messages-form-contact/delete', {
+                        'id': id
+                    }).then(function (response) {
+                        me.cerrarModal();
+                        me.loadMessages(me.pagination.current_page);
+                        swalWithBootstrapButtons.fire('Exito', '¡Eliminación correcta!', 'success');
+                    }).catch(function (error) {
+                        console.log(error);
+                    });
+                }
+            });
+        },
         abrirModal: function abrirModal(modelo, accion) {
             var data = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
 
@@ -88302,6 +88342,22 @@ var render = function() {
                   _c("p", { staticClass: "card-text text-muted float-right" }, [
                     _vm._v(_vm._s(msg.created_at))
                   ]),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-danger",
+                      on: {
+                        click: function($event) {
+                          return _vm.eliminaMessage(msg.id)
+                        }
+                      }
+                    },
+                    [
+                      _c("i", { staticClass: "fa fa-trash" }),
+                      _vm._v(" Ver\n                    ")
+                    ]
+                  ),
                   _vm._v(" "),
                   _c(
                     "button",

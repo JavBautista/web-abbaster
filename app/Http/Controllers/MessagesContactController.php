@@ -64,4 +64,9 @@ class MessagesContactController extends Controller
         $message->save();
     }
 
+    public function delete(Request $request){
+        $message = MessagesContact::findOrfail($request->id);
+        $message->delete();
+    }
+
 }

@@ -44,7 +44,7 @@
       .form-inline .form-control {
           border-radius: 0; /* Esquinas cuadradas */
           border: 1px solid #ccc; /* Borde del input */
-          padding: 10px; /* Espaciado interno */
+          /*padding: 5px; /* Espaciado interno */
       }
 
       .form-inline .btn-outline-light {
@@ -207,7 +207,6 @@
                 @endauth
               </li>
             @endif
-
               <li class="nav-item flex-fill">
                 @include('parts.form_select_currency')
               </li>

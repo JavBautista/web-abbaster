@@ -31,6 +31,11 @@
                       <h5 class="card-title">{{ msg.name }}</h5>
                       <p class="card-text preview-message">{{ truncateMessage(msg.message, 100) }}</p>
                       <p class="card-text text-muted float-right">{{ msg.created_at }}</p>
+
+                      <button class="btn btn-danger" @click="eliminaMessage(msg.id)">
+                        <i class="fa fa-trash"></i>&nbsp;Ver
+                      </button>
+
                       <button class="btn btn-primary" @click="abrirModal('message','ver', msg)">
                         <i class="fa fa-envelope-o"></i>&nbsp;Ver
                       </button>
@@ -254,7 +259,44 @@
             }
 
         },
+        eliminaMessage(id){
+            console.log('eliminar msg');
+            const swalWithBootstrapButtons = Swal.mixin({
+              customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger'
+              },
+              buttonsStyling: false
+            })
 
+            swalWithBootstrapButtons.fire({
+              title: '¿Desea eliminar este mensaje?',
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonText: 'Aceptar',
+              cancelButtonText: 'Cancelar',
+              reverseButtons: true
+            }).then((result) => {
+              if (result.value) {
+
+                let me=this;
+                axios.put('/messages-form-contact/delete',{
+                    'id': id
+                }).then(function (response){
+                    me.cerrarModal();
+                    me.loadMessages(me.pagination.current_page);
+                    swalWithBootstrapButtons.fire(
+                        'Exito',
+                        '¡Eliminación correcta!',
+                        'success'
+                    )
+                }).catch(function (error){
+                    console.log(error);
+                });
+
+              }
+            })
+        },
         abrirModal(modelo, accion, data=[]){
                 switch(modelo){
                     case "message":{

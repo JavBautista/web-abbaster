@@ -23,9 +23,11 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 use App\Shipping;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
+use GuzzleHttp\Client;
 
 class AbbasterPagesController extends Controller
 {
+
     public function index(){
         $testimonios = WebContentTestimonios::where('activo',1)->get();
         $destacados = WebContentDestacados::where('shop_id',0)->first();
@@ -80,7 +82,9 @@ class AbbasterPagesController extends Controller
         $products_featured = Product::where('destacado_gral', 1)->limit($limit_products_featured)->orderBy('destacado_gral_order','asc')->get();
 
     	$carousel = GlobalWebCarousel::orderBy('order','asc')->get();
-    	return view('welcome',[
+
+
+        return view('welcome',[
     		'carousel'=>$carousel,
             'products_featured'=>$products_featured,
             'section_crece'=>$section_crece,
@@ -94,8 +98,7 @@ class AbbasterPagesController extends Controller
             'tdas_accesos'=>$tdas_accesos,
             'seccion_carousel'=>$seccion_carousel,
             'seccion_testimonios'=>$seccion_testimonios,
-            'seccion_crece'=>$seccion_crece,
-
+            'seccion_crece'=>$seccion_crece
 
     	]);
     }

@@ -81,7 +81,7 @@
                 }//if-else
             @endphp
             <div class="col-lg-3">
-              <div class="card h-100 mb-2">
+              <div class="card h-100 mb-2" data-toggle="tooltip" title="{{$product_featured->name}}">
                 <a href="{{$link_route}}">
                   <img class="card-img-top card-img-scale" src="{{ $product_featured->image }}" alt="{{ $product_featured->name }}">
                 </a>
@@ -180,7 +180,7 @@
                   $link_shop = ($shop->dynamic)?route('shops.index',$shop->slug):"/$shop->slug";
                 @endphp
                 <div class="col-md-3">
-                  <div class="card mb-4 shadow-sm h-100">
+                  <div class="card mb-4 shadow-sm h-100" data-toggle="tooltip" title="{{$shop->description}}">
 
                     <a href="{{ $link_shop }}">
                       <img class="card-img-top card-img-scale" src="{{$shop->getLogoStore($shop->logo)}}" alt="{{ $shop->name }}">

@@ -11,6 +11,7 @@ use App\CustomerNotification;
 use App\Message;
 use App\MessagesContact;
 use App\DollarPrice;
+use App\DollarPriceCurrent;
 use App\WebContentBannerLoop;
 use App\AbbasterInformation;
 use Illuminate\Support\Facades\Session;
@@ -113,6 +114,12 @@ function contVisitaCategoria($category_id){
 
 	function getTipoCambio(){
 		$dollar = DollarPrice::find(1);
+		return $dollar->price;
+
+	}
+
+	function getTipoCambioActual(){
+		$dollar = DollarPriceCurrent::find(1);
 		return $dollar->price;
 
 	}

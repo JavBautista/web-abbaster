@@ -12,7 +12,7 @@
         "anhskohbo/no-captcha": "^3.5",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^3.0",
-        "guzzlehttp/guzzle": "^7.0.1",
+        "guzzlehttp/guzzle": "^7.5",
         "hardevine/shoppingcart": "^2.5",
         "intervention/image": "^2.5",
         "jenssegers/agent": "^2.6",
