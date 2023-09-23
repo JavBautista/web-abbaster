@@ -88355,7 +88355,7 @@ var render = function() {
                     },
                     [
                       _c("i", { staticClass: "fa fa-trash" }),
-                      _vm._v(" Ver\n                    ")
+                      _vm._v(" Eliminar\n                    ")
                     ]
                   ),
                   _vm._v(" "),

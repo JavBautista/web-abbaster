@@ -33,7 +33,7 @@
                       <p class="card-text text-muted float-right">{{ msg.created_at }}</p>
 
                       <button class="btn btn-danger" @click="eliminaMessage(msg.id)">
-                        <i class="fa fa-trash"></i>&nbsp;Ver
+                        <i class="fa fa-trash"></i>&nbsp;Eliminar
                       </button>
 
                       <button class="btn btn-primary" @click="abrirModal('message','ver', msg)">
