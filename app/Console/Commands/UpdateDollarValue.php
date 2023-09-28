@@ -4,7 +4,9 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
-use App\DollarPriceCurrent; // Asegúrate de importar el modelo correcto
+use App\DollarPriceCurrent;
+use App\Product;
+use Carbon\Carbon;
 
 class UpdateDollarValue extends Command
 {
@@ -59,11 +61,32 @@ class UpdateDollarValue extends Command
             $dollar->price = $exchangeRate;
             $dollar->save();
 
+            $dollar_price= $dollar->price;
+            //$products = Product::all();
+            // Obtener todos los productos con costo en dólares válido
+            $products = Product::whereNotNull('cost_dollar')->get();
+
+            $products_actualizados=0;
+            foreach($products as $product){
+                $new_retail = $product->cost_dollar * $dollar_price;
+                $product->retail = $new_retail;
+                $product->save();
+                $products_actualizados++;
+            }
+
+            // Obtén la fecha y hora actual
+            $currentDateTime = Carbon::now()->toDateTimeString();
+
             // Registrar un mensaje de éxito en el registro de Laravel
-            $this->info('Valor del dólar actualizado correctamente: ' . $exchangeRate);
+            $message = "Valor del dólar actualizado correctamente a {$exchangeRate} en {$currentDateTime}. Productos actualizados {$products_actualizados}";
+            $this->info($message);
+
+        } catch (\GuzzleHttp\Exception\RequestException $e) {
+            // En caso de error en la solicitud HTTP, registrar un mensaje de error
+            $this->error('Error al hacer la solicitud HTTP: ' . $e->getMessage());
         } catch (\Exception $e) {
-            // En caso de error en la solicitud, registrar un mensaje de error
-            $this->error('No se pudo actualizar el valor del dólar.');
+            // En caso de otros errores, registrar un mensaje de error general
+            $this->error('Error: ' . $e->getMessage());
         }
     }
 }
