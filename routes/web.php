@@ -37,6 +37,7 @@ Route::get('/roho-seguros', 'AbbasterPagesController@rohoIndex');
 #LINKS DE ABBASTER
 Route::get('/', 'AbbasterPagesController@index');
 Route::get('/search', 'AbbasterPagesController@search')->name('ababster.search');
+
 Route::get('/como-comprar/', 'AbbasterPagesController@comoComprar');
 Route::get('/crece/', 'AbbasterPagesController@crece');
 

@@ -7,6 +7,7 @@ use App\GlobalWebCarousel;
 use App\Http\Requests\SearchRequest;
 use App\Shop;
 use App\Product;
+use App\Category;
 use App\Purchase;
 use App\Project;
 use App\WebSection;
@@ -168,16 +169,83 @@ class AbbasterPagesController extends Controller
     }
 
     public function search(SearchRequest $request){
+        $categorias = Category::all();
+        $exactMatch='';
+        $selectedCategory=null;
+
+
         $shops   = Shop::where('status',0)->get();
         $query = $request->input('query');
-        /*$products = Product::where('name','LIKE',"%$query%")
-                    ->orwhere('key','LIKE',"%$query%")
-                    ->orwhere('keywords','LIKE',"%$query%")
-                    ->orderBy('name','desc')
-                    ->get();*/
-         //Divide la consulta en palabras individuales
-        $keywords = explode(' ', $query);
 
+        // Verificar si se enviaron variables adicionales desde el formulario avanzado
+        if ($request->has('category')) {
+            $selectedCategory = $request->input('category');
+        }
+
+        if ($request->has('exact_match')) {
+            $exactMatch = $request->input('exact_match');
+        }
+
+       $products = Product::query();
+
+        if ($exactMatch) {
+            $products->where(function ($queryBuilder) use ($query) {
+                $queryBuilder->where('name', 'LIKE', '%'.$query.'%')
+                    ->orWhere('key', 'LIKE', '%'.$query.'%')
+                    ->orWhere('keywords', 'LIKE', '%'.$query.'%');
+            });
+        } else {
+            $keywords = explode(' ', $query);
+
+            foreach ($keywords as $keyword) {
+                $products->where(function ($queryBuilder) use ($keyword) {
+                    $queryBuilder->orWhere('name', 'LIKE', '%' . $keyword . '%')
+                        ->orWhere('key', 'LIKE', '%' . $keyword . '%')
+                        ->orWhere('keywords', 'LIKE', '%' . $keyword . '%');
+                });
+            }
+        }
+
+        if ($selectedCategory) {
+            $products->whereHas('category', function ($query) use ($selectedCategory) {
+                $query->where('id', $selectedCategory);
+            });
+        }
+
+        $products = $products->orderBy('name', 'desc')->get();
+
+        $count_products=$products?$products->count():0;
+
+        return view('search',[
+            'query'=>$query,
+            'count_products'=>$count_products,
+            'products'=>$products,
+            'shops'=>$shops,
+            'categorias'=>$categorias,
+            'exactMatch'=>$exactMatch,
+            'selectedCategory'=>$selectedCategory
+        ]);
+    }
+
+    public function searchOLD(SearchRequest $request){
+        $categorias = Category::all();
+        $exactMatch='';
+        $selectedCategory=null;
+
+
+        $shops   = Shop::where('status',0)->get();
+        $query = $request->input('query');
+
+        // Verificar si se enviaron variables adicionales desde el formulario avanzado
+        if ($request->has('category')) {
+            $selectedCategory = $request->input('category');
+        }
+
+        if ($request->has('exact_match')) {
+            $exactMatch = $request->input('exact_match');
+        }
+
+        $keywords = explode(' ', $query);
         $products = Product::where(function ($query) use ($keywords) {
             foreach ($keywords as $keyword) {
                 $query->orWhere('name', 'LIKE', "%$keyword%")
@@ -189,14 +257,18 @@ class AbbasterPagesController extends Controller
         ->get();
 
         $count_products=$products?$products->count():0;
+
         return view('search',[
             'query'=>$query,
             'count_products'=>$count_products,
             'products'=>$products,
             'shops'=>$shops,
-
+            'categorias'=>$categorias,
+            'exactMatch'=>$exactMatch,
+            'selectedCategory'=>$selectedCategory
         ]);
     }
+
 
     public function shoppingCart(){
         $shops   = Shop::where('status',0)->get();
