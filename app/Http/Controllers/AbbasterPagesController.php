@@ -169,15 +169,20 @@ class AbbasterPagesController extends Controller
     }
 
     public function search(SearchRequest $request){
-        $categorias = Category::all();
+
         $exactMatch='';
         $selectedCategory=null;
+        $selectedShop=null;
 
 
         $shops   = Shop::where('status',0)->get();
         $query = $request->input('query');
 
         // Verificar si se enviaron variables adicionales desde el formulario avanzado
+        if ($request->has('shop')) {
+            $selectedShop = $request->input('shop');
+        }
+
         if ($request->has('category')) {
             $selectedCategory = $request->input('category');
         }
@@ -186,7 +191,15 @@ class AbbasterPagesController extends Controller
             $exactMatch = $request->input('exact_match');
         }
 
-       $products = Product::query();
+         $categorias = Category::orderBy('name', 'asc');
+        // Filtrar categorías por tienda si se ha seleccionado una tienda
+        if ($selectedShop) {
+            $categorias->where('shop_id', $selectedShop);
+        }
+
+        $categorias = $categorias->get();
+
+        $products = Product::query();
 
         if ($exactMatch) {
             $products->where(function ($queryBuilder) use ($query) {
@@ -212,6 +225,12 @@ class AbbasterPagesController extends Controller
             });
         }
 
+        if ($selectedShop) {
+            $products->whereHas('category.shop', function ($query) use ($selectedShop) {
+                $query->where('id', $selectedShop);
+            });
+        }
+
         $products = $products->orderBy('name', 'desc')->get();
 
         $count_products=$products?$products->count():0;
@@ -223,12 +242,13 @@ class AbbasterPagesController extends Controller
             'shops'=>$shops,
             'categorias'=>$categorias,
             'exactMatch'=>$exactMatch,
-            'selectedCategory'=>$selectedCategory
+            'selectedCategory'=>$selectedCategory,
+            'selectedShop'=>$selectedShop,
         ]);
     }
 
     public function searchOLD(SearchRequest $request){
-        $categorias = Category::all();
+
         $exactMatch='';
         $selectedCategory=null;
 
@@ -237,6 +257,10 @@ class AbbasterPagesController extends Controller
         $query = $request->input('query');
 
         // Verificar si se enviaron variables adicionales desde el formulario avanzado
+        if ($request->has('shop')) {
+            $selectedShop = $request->input('shop');
+        }
+
         if ($request->has('category')) {
             $selectedCategory = $request->input('category');
         }
@@ -244,6 +268,14 @@ class AbbasterPagesController extends Controller
         if ($request->has('exact_match')) {
             $exactMatch = $request->input('exact_match');
         }
+
+         $categorias = Category::orderBy('name', 'asc');
+        // Filtrar categorías por tienda si se ha seleccionado una tienda
+        if ($selectedShop) {
+            $categorias->where('shop_id', $selectedShop);
+        }
+
+        $categorias = $categorias->get();
 
         $keywords = explode(' ', $query);
         $products = Product::where(function ($query) use ($keywords) {
