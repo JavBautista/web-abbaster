@@ -169,6 +169,27 @@ class AbbasterPagesController extends Controller
     }
 
     public function search(SearchRequest $request){
+        $shops   = Shop::where('status',0)->get();
+        $query = $request->input('query');
+        $products = Product::query();
+        $keywords = explode(' ', $query);
+        foreach ($keywords as $keyword) {
+            $products->where(function ($queryBuilder) use ($keyword) {
+                $queryBuilder->orWhere('name', 'LIKE', '%' . $keyword . '%')
+                    ->orWhere('keywords', 'LIKE', '%' . $keyword . '%');
+            });
+        }
+        $products = $products->orderBy('name', 'desc')->get();
+        $count_products=$products?$products->count():0;
+        return view('search',[
+            'query'=>$query,
+            'count_products'=>$count_products,
+            'products'=>$products,
+            'shops'=>$shops
+        ]);
+    }
+
+    public function searchAdvance(SearchRequest $request){
 
         $exactMatch='';
         $selectedCategory=null;
@@ -204,7 +225,6 @@ class AbbasterPagesController extends Controller
         if ($exactMatch) {
             $products->where(function ($queryBuilder) use ($query) {
                 $queryBuilder->where('name', 'LIKE', '%'.$query.'%')
-                    ->orWhere('key', 'LIKE', '%'.$query.'%')
                     ->orWhere('keywords', 'LIKE', '%'.$query.'%');
             });
         } else {
@@ -213,7 +233,6 @@ class AbbasterPagesController extends Controller
             foreach ($keywords as $keyword) {
                 $products->where(function ($queryBuilder) use ($keyword) {
                     $queryBuilder->orWhere('name', 'LIKE', '%' . $keyword . '%')
-                        ->orWhere('key', 'LIKE', '%' . $keyword . '%')
                         ->orWhere('keywords', 'LIKE', '%' . $keyword . '%');
                 });
             }
@@ -244,60 +263,6 @@ class AbbasterPagesController extends Controller
             'exactMatch'=>$exactMatch,
             'selectedCategory'=>$selectedCategory,
             'selectedShop'=>$selectedShop,
-        ]);
-    }
-
-    public function searchOLD(SearchRequest $request){
-
-        $exactMatch='';
-        $selectedCategory=null;
-
-
-        $shops   = Shop::where('status',0)->get();
-        $query = $request->input('query');
-
-        // Verificar si se enviaron variables adicionales desde el formulario avanzado
-        if ($request->has('shop')) {
-            $selectedShop = $request->input('shop');
-        }
-
-        if ($request->has('category')) {
-            $selectedCategory = $request->input('category');
-        }
-
-        if ($request->has('exact_match')) {
-            $exactMatch = $request->input('exact_match');
-        }
-
-         $categorias = Category::orderBy('name', 'asc');
-        // Filtrar categorías por tienda si se ha seleccionado una tienda
-        if ($selectedShop) {
-            $categorias->where('shop_id', $selectedShop);
-        }
-
-        $categorias = $categorias->get();
-
-        $keywords = explode(' ', $query);
-        $products = Product::where(function ($query) use ($keywords) {
-            foreach ($keywords as $keyword) {
-                $query->orWhere('name', 'LIKE', "%$keyword%")
-                      ->orWhere('key', 'LIKE', "%$keyword%")
-                      ->orWhere('keywords', 'LIKE', "%$keyword%");
-            }
-        })
-        ->orderBy('name', 'desc')
-        ->get();
-
-        $count_products=$products?$products->count():0;
-
-        return view('search',[
-            'query'=>$query,
-            'count_products'=>$count_products,
-            'products'=>$products,
-            'shops'=>$shops,
-            'categorias'=>$categorias,
-            'exactMatch'=>$exactMatch,
-            'selectedCategory'=>$selectedCategory
         ]);
     }
 
